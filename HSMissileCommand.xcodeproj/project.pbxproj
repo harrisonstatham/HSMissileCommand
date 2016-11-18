@@ -8,7 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		84E9668D1DD69307005421F9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E9668C1DD69307005421F9 /* main.cpp */; };
+		84E967451DD7C635005421F9 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E967311DD7C635005421F9 /* player.cpp */; };
+		84E967461DD7C635005421F9 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 84E967331DD7C635005421F9 /* Makefile */; };
+		84E967471DD7C635005421F9 /* city_landscape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E967351DD7C635005421F9 /* city_landscape.cpp */; };
+		84E967481DD7C635005421F9 /* missile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E967371DD7C635005421F9 /* missile.cpp */; };
+		84E967491DD7C635005421F9 /* doubly_linked_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E9673A1DD7C635005421F9 /* doubly_linked_list.cpp */; };
+		84E9674A1DD7C635005421F9 /* testbench.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E9673C1DD7C635005421F9 /* testbench.cpp */; };
+		84E967521DD7CBE5005421F9 /* main2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E967501DD7CBE5005421F9 /* main2.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		84E967261DD7C219005421F9 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = sourcecode.cpp;
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/myfile",
+			);
+			script = "/usr/local/gcc-arm/bin/arm-none-eabi-gcc \"/Users/harrison/Documents/Personal/programming/HSMissileCommand/HSMissileCommand/main.cpp\"";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		84E966871DD69307005421F9 /* CopyFiles */ = {
@@ -24,7 +44,34 @@
 
 /* Begin PBXFileReference section */
 		84E966891DD69307005421F9 /* HSMissileCommand */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HSMissileCommand; sourceTree = BUILT_PRODUCTS_DIR; };
-		84E9668C1DD69307005421F9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		84E9668C1DD69307005421F9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = HSMissileCommand/main.cpp; sourceTree = "<group>"; };
+		84E9672A1DD7C635005421F9 /* doubly_linked_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = doubly_linked_list.h; path = HSMissileCommand/doubly_linked_list.h; sourceTree = "<group>"; };
+		84E9672B1DD7C635005421F9 /* missile_public.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = missile_public.h; path = HSMissileCommand/missile_public.h; sourceTree = "<group>"; };
+		84E9672C1DD7C635005421F9 /* mbed */ = {isa = PBXFileReference; lastKnownFileType = folder; name = mbed; path = HSMissileCommand/mbed; sourceTree = "<group>"; };
+		84E9672D1DD7C635005421F9 /* MMA8452 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MMA8452; path = HSMissileCommand/MMA8452; sourceTree = "<group>"; };
+		84E9672E1DD7C635005421F9 /* GettingStarted.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = GettingStarted.html; path = HSMissileCommand/GettingStarted.html; sourceTree = "<group>"; };
+		84E9672F1DD7C635005421F9 /* city_landscape_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = city_landscape_private.h; path = HSMissileCommand/city_landscape_private.h; sourceTree = "<group>"; };
+		84E967301DD7C635005421F9 /* mbed_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mbed_config.h; path = HSMissileCommand/mbed_config.h; sourceTree = "<group>"; };
+		84E967311DD7C635005421F9 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = HSMissileCommand/player.cpp; sourceTree = "<group>"; };
+		84E967321DD7C635005421F9 /* 4DGL-uLCD-SE */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "4DGL-uLCD-SE"; path = "HSMissileCommand/4DGL-uLCD-SE"; sourceTree = "<group>"; };
+		84E967331DD7C635005421F9 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = HSMissileCommand/Makefile; sourceTree = "<group>"; };
+		84E967341DD7C635005421F9 /* mbed.bld */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mbed.bld; path = HSMissileCommand/mbed.bld; sourceTree = "<group>"; };
+		84E967351DD7C635005421F9 /* city_landscape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = city_landscape.cpp; path = HSMissileCommand/city_landscape.cpp; sourceTree = "<group>"; };
+		84E967361DD7C635005421F9 /* city_landscape_public.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = city_landscape_public.h; path = HSMissileCommand/city_landscape_public.h; sourceTree = "<group>"; };
+		84E967371DD7C635005421F9 /* missile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = missile.cpp; path = HSMissileCommand/missile.cpp; sourceTree = "<group>"; };
+		84E967381DD7C635005421F9 /* player_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player_private.h; path = HSMissileCommand/player_private.h; sourceTree = "<group>"; };
+		84E967391DD7C635005421F9 /* globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = globals.h; path = HSMissileCommand/globals.h; sourceTree = "<group>"; };
+		84E9673A1DD7C635005421F9 /* doubly_linked_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = doubly_linked_list.cpp; path = HSMissileCommand/doubly_linked_list.cpp; sourceTree = "<group>"; };
+		84E9673B1DD7C635005421F9 /* missile_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = missile_private.h; path = HSMissileCommand/missile_private.h; sourceTree = "<group>"; };
+		84E9673C1DD7C635005421F9 /* testbench.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testbench.cpp; path = HSMissileCommand/testbench.cpp; sourceTree = "<group>"; };
+		84E9673D1DD7C635005421F9 /* MMA8452.lib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MMA8452.lib; path = HSMissileCommand/MMA8452.lib; sourceTree = "<group>"; };
+		84E9673F1DD7C635005421F9 /* player_public.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player_public.h; path = HSMissileCommand/player_public.h; sourceTree = "<group>"; };
+		84E967401DD7C635005421F9 /* testbench.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testbench.h; path = HSMissileCommand/testbench.h; sourceTree = "<group>"; };
+		84E967411DD7C635005421F9 /* SDFileSystem */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SDFileSystem; path = HSMissileCommand/SDFileSystem; sourceTree = "<group>"; };
+		84E967421DD7C635005421F9 /* wave_player */ = {isa = PBXFileReference; lastKnownFileType = folder; name = wave_player; path = HSMissileCommand/wave_player; sourceTree = "<group>"; };
+		84E967431DD7C635005421F9 /* 4DGL-uLCD-SE.lib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "4DGL-uLCD-SE.lib"; path = "HSMissileCommand/4DGL-uLCD-SE.lib"; sourceTree = "<group>"; };
+		84E967441DD7C635005421F9 /* wave_player.lib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wave_player.lib; path = HSMissileCommand/wave_player.lib; sourceTree = "<group>"; };
+		84E967501DD7CBE5005421F9 /* main2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main2.cpp; path = HSMissileCommand/main2.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +88,7 @@
 		84E966801DD69307005421F9 = {
 			isa = PBXGroup;
 			children = (
-				84E9668B1DD69307005421F9 /* HSMissileCommand */,
+				84E967271DD7C24A005421F9 /* HSMissileCommand */,
 				84E9668A1DD69307005421F9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +101,39 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		84E9668B1DD69307005421F9 /* HSMissileCommand */ = {
+		84E967271DD7C24A005421F9 /* HSMissileCommand */ = {
 			isa = PBXGroup;
 			children = (
+				84E9672C1DD7C635005421F9 /* mbed */,
+				84E9672D1DD7C635005421F9 /* MMA8452 */,
+				84E967321DD7C635005421F9 /* 4DGL-uLCD-SE */,
+				84E967411DD7C635005421F9 /* SDFileSystem */,
+				84E967421DD7C635005421F9 /* wave_player */,
+				84E9672A1DD7C635005421F9 /* doubly_linked_list.h */,
+				84E9672B1DD7C635005421F9 /* missile_public.h */,
+				84E9672E1DD7C635005421F9 /* GettingStarted.html */,
+				84E9672F1DD7C635005421F9 /* city_landscape_private.h */,
+				84E967301DD7C635005421F9 /* mbed_config.h */,
+				84E967311DD7C635005421F9 /* player.cpp */,
+				84E967331DD7C635005421F9 /* Makefile */,
+				84E967341DD7C635005421F9 /* mbed.bld */,
+				84E967351DD7C635005421F9 /* city_landscape.cpp */,
+				84E967361DD7C635005421F9 /* city_landscape_public.h */,
+				84E967371DD7C635005421F9 /* missile.cpp */,
+				84E967381DD7C635005421F9 /* player_private.h */,
+				84E967391DD7C635005421F9 /* globals.h */,
+				84E9673A1DD7C635005421F9 /* doubly_linked_list.cpp */,
+				84E9673B1DD7C635005421F9 /* missile_private.h */,
+				84E967401DD7C635005421F9 /* testbench.h */,
+				84E9673C1DD7C635005421F9 /* testbench.cpp */,
+				84E9673D1DD7C635005421F9 /* MMA8452.lib */,
+				84E9673F1DD7C635005421F9 /* player_public.h */,
+				84E967431DD7C635005421F9 /* 4DGL-uLCD-SE.lib */,
+				84E967441DD7C635005421F9 /* wave_player.lib */,
 				84E9668C1DD69307005421F9 /* main.cpp */,
+				84E967501DD7CBE5005421F9 /* main2.cpp */,
 			);
-			path = HSMissileCommand;
+			name = HSMissileCommand;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +148,7 @@
 				84E966871DD69307005421F9 /* CopyFiles */,
 			);
 			buildRules = (
+				84E967261DD7C219005421F9 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -119,7 +194,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E967521DD7CBE5005421F9 /* main2.cpp in Sources */,
+				84E967481DD7C635005421F9 /* missile.cpp in Sources */,
+				84E967461DD7C635005421F9 /* Makefile in Sources */,
+				84E967451DD7C635005421F9 /* player.cpp in Sources */,
+				84E967471DD7C635005421F9 /* city_landscape.cpp in Sources */,
+				84E9674A1DD7C635005421F9 /* testbench.cpp in Sources */,
 				84E9668D1DD69307005421F9 /* main.cpp in Sources */,
+				84E967491DD7C635005421F9 /* doubly_linked_list.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +328,7 @@
 				84E966921DD69307005421F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
