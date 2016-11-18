@@ -14,7 +14,6 @@
 		84E967481DD7C635005421F9 /* missile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E967371DD7C635005421F9 /* missile.cpp */; };
 		84E967491DD7C635005421F9 /* doubly_linked_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E9673A1DD7C635005421F9 /* doubly_linked_list.cpp */; };
 		84E9674A1DD7C635005421F9 /* testbench.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E9673C1DD7C635005421F9 /* testbench.cpp */; };
-		84E967521DD7CBE5005421F9 /* main2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E967501DD7CBE5005421F9 /* main2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -71,7 +70,6 @@
 		84E967421DD7C635005421F9 /* wave_player */ = {isa = PBXFileReference; lastKnownFileType = folder; name = wave_player; path = HSMissileCommand/wave_player; sourceTree = "<group>"; };
 		84E967431DD7C635005421F9 /* 4DGL-uLCD-SE.lib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "4DGL-uLCD-SE.lib"; path = "HSMissileCommand/4DGL-uLCD-SE.lib"; sourceTree = "<group>"; };
 		84E967441DD7C635005421F9 /* wave_player.lib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wave_player.lib; path = HSMissileCommand/wave_player.lib; sourceTree = "<group>"; };
-		84E967501DD7CBE5005421F9 /* main2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main2.cpp; path = HSMissileCommand/main2.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +129,6 @@
 				84E967431DD7C635005421F9 /* 4DGL-uLCD-SE.lib */,
 				84E967441DD7C635005421F9 /* wave_player.lib */,
 				84E9668C1DD69307005421F9 /* main.cpp */,
-				84E967501DD7CBE5005421F9 /* main2.cpp */,
 			);
 			name = HSMissileCommand;
 			sourceTree = "<group>";
@@ -194,7 +191,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84E967521DD7CBE5005421F9 /* main2.cpp in Sources */,
 				84E967481DD7C635005421F9 /* missile.cpp in Sources */,
 				84E967461DD7C635005421F9 /* Makefile in Sources */,
 				84E967451DD7C635005421F9 /* player.cpp in Sources */,
