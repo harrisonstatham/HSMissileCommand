@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Call Make
+
+make
+
+# Upload the new binary to the MBED.
+
+cp -f .build/MissileCommand.bin /Volumes/MBED/MissileCommand.bin
+
+ls -a /Volumes/MBED/

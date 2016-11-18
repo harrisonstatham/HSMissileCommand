@@ -256,7 +256,7 @@ int main()
         
         #ifdef HSDEBUG
         
-            pc.printf("Testing the local ARM compiler.\n\r");
+        
         
         #endif
         
