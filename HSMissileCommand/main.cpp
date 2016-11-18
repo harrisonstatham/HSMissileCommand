@@ -707,7 +707,7 @@ void AnimateExplosionAtLocation(uint32_t x, uint32_t y, bool isCity) {
     if(isCity) {
         
         // City destruction animation.
-        
+        // Do something a bit more dramatic!
         
         
         
@@ -715,11 +715,11 @@ void AnimateExplosionAtLocation(uint32_t x, uint32_t y, bool isCity) {
         
         // Draw some circle of different colors around the missile coordinates.
         uLCD.filled_circle(x, y , 5, RED);
-        wait(0.05);
+        wait(0.01);
         uLCD.filled_circle(x, y , 3, LGREY);
-        wait(0.05);
+        wait(0.01);
         uLCD.filled_circle(x, y , 3, BLACK);
-        wait(0.05);
+        wait(0.01);
         uLCD.filled_circle(x, y , 5, BLACK);
     }
 }
