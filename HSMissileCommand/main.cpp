@@ -467,6 +467,8 @@ int main()
     
     // Clean up.
     
+    // Do something forever. Wouldnt want our MBED to get bored...
+    while(1) wait(1);
 }
 
 
@@ -775,13 +777,15 @@ void UpdatePlayerStatus(void) {
             // Show animation of missile exploding.
             
             // Show animation of ship exploding.   
-            
+            AnimateExplosionAtLocation(mis->x, mis->y, false);
             
             // Check to see if we have more lives available.
             if(playerLives < 1) {
                 
                 // Its game over for the player.
                 person.status = DESTROYED;
+                
+                player_destroy();
                 
                 #ifdef HSDEBUG
                     pc.printf("Destroyed\n\r");
