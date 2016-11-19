@@ -114,8 +114,8 @@
 		847966101DDFBBBB0092FFCD /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				84E967381DD7C635005421F9 /* player_private.h */,
 				84E9673F1DD7C635005421F9 /* player_public.h */,
+				84E967381DD7C635005421F9 /* player_private.h */,
 				84E967311DD7C635005421F9 /* player.cpp */,
 			);
 			name = Player;

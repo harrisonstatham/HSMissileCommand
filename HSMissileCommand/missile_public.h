@@ -118,6 +118,16 @@ void set_missile_interval(int interval);
 uint32_t getMissilesThisLevel();
 
 
+/**
+ * setContinueToDrawMissiles
+ *
+ * @brief                       Set a boolean determining whether missiles should be drawn.
+ * @param   shouldDrawMissiles  A boolean determining whether missiles should be drawn.
+ */
+
+void setContinueToDrawMissiles(bool shouldDrawMissiles);
+
+
 
 
 #endif //MISSILE_PUBLIC_H

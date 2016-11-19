@@ -170,9 +170,9 @@ typedef struct Level {
 
 const Level levels[10] = {
     
-    {.index = 1, .numMissilesMax = 25},
-    {.index = 2, .numMissilesMax = 50},
-    {.index = 3, .numMissilesMax = 75},
+    {.index = 1, .numMissilesMax = 2},
+    {.index = 2, .numMissilesMax = 5},
+    {.index = 3, .numMissilesMax = 5},
     {.index = 4, .numMissilesMax = 100},
     {.index = 5, .numMissilesMax = 125},
     {.index = 6, .numMissilesMax = 150},
@@ -192,6 +192,13 @@ const Level levels[10] = {
 void NextLevel(Level *currentLevel);
 
 
+/**
+ * CanGoToNextLevel
+ *
+ * @return              A boolean determining if the next level can be loaded.
+ */
+
+bool CanGoToNextLevel();
 
 
 
@@ -298,6 +305,7 @@ int main()
     int leftbtnPressed  = 0;
     int firebtnPressed  = 0;
     
+    uint32_t numMissilesThisLevel = 0;
     
     // Main game loop
     while(1)
@@ -316,6 +324,10 @@ int main()
         PrintLivesToScreen();
         
         PrintLevelToScreen(&currentLevel);
+        
+        
+        numMissilesThisLevel = getMissilesThisLevel();
+        
         
         #ifdef HSDEBUG
         
@@ -349,6 +361,11 @@ int main()
                 pc.printf("On next level.\n\r");
                         
             #endif
+            
+            // Wait for a little to slow down the code.
+            // As it is a human cant press both buttons, and remove their fingers without
+            // it advancing multiple levels.
+            wait(0.5);
             
             if(CheckGameOver()) {
                 
@@ -411,6 +428,32 @@ int main()
         if(CheckGameOver()) {
             
             break;
+        
+        }
+        
+        
+        // 7. Check for next level.
+        if(numMissilesThisLevel >= currentLevel.numMissilesMax) {
+            
+            // Get the missile list and find out if all of them have been destroyed.
+            // If that is true, then we can advance to the next level.
+            
+            #ifdef HSDEBUG
+                pc.printf("Satisfied condition for next level.\n\r");
+            #endif
+            
+            // Stop drawing new missiles to the screen.
+            setContinueToDrawMissiles(false);
+            
+            
+            if(CanGoToNextLevel()) {
+                
+                #ifdef HSDEBUG
+                    pc.printf("Going to next level.\n\r");
+                #endif
+                
+                NextLevel(&currentLevel);
+            }
         }
         
     }
@@ -952,11 +995,39 @@ void NextLevel(Level *currentLevel) {
     }
     
     
-    
+    // Reset the missile generator.
+    setContinueToDrawMissiles(true);
 }
 
 
 
+/**
+ * CanGoToNextLevel
+ *
+ * @return              A boolean determining if the next level can be loaded.
+ */
+
+bool CanGoToNextLevel() {
+    
+    DLinkedList *missiles = get_missile_list();
+    
+    LLNode *head = missiles->head;
+    MISSILE *m   = NULL;
+    
+    while(head) {
+        
+        m = (MISSILE *) head->data;
+        
+        if(m->status == MISSILE_ACTIVE) {
+            
+            return false;
+        }
+        
+        head = head->next;
+    }
+    
+    return true;
+}
 
 
 

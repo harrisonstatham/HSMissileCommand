@@ -11,7 +11,7 @@ int missile_tick = 0;
 
 uint32_t numMissilesThisLevel = 0;
 
-
+bool shouldContinueToDrawMissiles = true;
 
 //Create a DLL for missiles
 DLinkedList* missileDLL = NULL;
@@ -37,13 +37,17 @@ void missile_init(void)
  */
 void missile_generator(void){
     
-    numMissilesThisLevel++;
     missile_tick++;
     
     // only fire the missile at certain ticks
     if((missile_tick % MISSILE_INTERVAL)==0 || missile_tick==0){
         //printf("missile_create()");
-        missile_create();
+        
+        if(shouldContinueToDrawMissiles) {
+            
+            missile_create();
+            numMissilesThisLevel++;
+        }
     }
     
     // update the missiles and draw them
@@ -209,5 +213,17 @@ uint32_t getMissilesThisLevel() {
     return numMissilesThisLevel;
 }
 
+
+/**
+ * setContinueToDrawMissiles
+ *
+ * @brief                       Set a boolean determining whether missiles should be drawn.
+ * @param   shouldDrawMissiles  A boolean determining whether missiles should be drawn.
+ */
+
+void setContinueToDrawMissiles(bool shouldDrawMissiles) {
+    
+    shouldContinueToDrawMissiles = shouldDrawMissiles;
+}
 
 
