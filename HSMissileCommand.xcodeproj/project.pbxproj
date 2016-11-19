@@ -42,6 +42,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		847966171DDFE3CB0092FFCD /* mbed-rtos */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mbed-rtos"; path = "HSMissileCommand/mbed-rtos"; sourceTree = "<group>"; };
+		847966181DDFE3CB0092FFCD /* mbed-rtos.lib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "mbed-rtos.lib"; path = "HSMissileCommand/mbed-rtos.lib"; sourceTree = "<group>"; };
 		84E966891DD69307005421F9 /* HSMissileCommand */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HSMissileCommand; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E9668C1DD69307005421F9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = HSMissileCommand/main.cpp; sourceTree = "<group>"; };
 		84E9672A1DD7C635005421F9 /* doubly_linked_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = doubly_linked_list.h; path = HSMissileCommand/doubly_linked_list.h; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		847966121DDFBBF40092FFCD /* Other Files */ = {
 			isa = PBXGroup;
 			children = (
+				847966181DDFE3CB0092FFCD /* mbed-rtos.lib */,
 				84E967341DD7C635005421F9 /* mbed.bld */,
 				84E9673D1DD7C635005421F9 /* MMA8452.lib */,
 				84E967431DD7C635005421F9 /* 4DGL-uLCD-SE.lib */,
@@ -169,6 +172,7 @@
 			children = (
 				847966121DDFBBF40092FFCD /* Other Files */,
 				84E9672C1DD7C635005421F9 /* mbed */,
+				847966171DDFE3CB0092FFCD /* mbed-rtos */,
 				84E9672D1DD7C635005421F9 /* MMA8452 */,
 				84E967321DD7C635005421F9 /* 4DGL-uLCD-SE */,
 				84E967411DD7C635005421F9 /* SDFileSystem */,

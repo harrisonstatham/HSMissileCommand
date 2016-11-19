@@ -220,8 +220,13 @@ void PrintLevelToScreen(Level *currentLevel);
 void playSound(char* wav);
 
 
+/**
+ * sound_thread
+ *
+ * @brief       A thread responsible for running sound.
+ */
 
-
+void sound_thread(void const *args);
 
 
 
