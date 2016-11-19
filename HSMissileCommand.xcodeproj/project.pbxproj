@@ -44,6 +44,7 @@
 /* Begin PBXFileReference section */
 		847966171DDFE3CB0092FFCD /* mbed-rtos */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mbed-rtos"; path = "HSMissileCommand/mbed-rtos"; sourceTree = "<group>"; };
 		847966181DDFE3CB0092FFCD /* mbed-rtos.lib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "mbed-rtos.lib"; path = "HSMissileCommand/mbed-rtos.lib"; sourceTree = "<group>"; };
+		847966191DDFE7A60092FFCD /* rtos */ = {isa = PBXFileReference; lastKnownFileType = folder; name = rtos; path = "HSMissileCommand/mbed-rtos/rtos"; sourceTree = "<group>"; };
 		84E966891DD69307005421F9 /* HSMissileCommand */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HSMissileCommand; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E9668C1DD69307005421F9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = HSMissileCommand/main.cpp; sourceTree = "<group>"; };
 		84E9672A1DD7C635005421F9 /* doubly_linked_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = doubly_linked_list.h; path = HSMissileCommand/doubly_linked_list.h; sourceTree = "<group>"; };
@@ -181,6 +182,7 @@
 				847966161DDFBD850092FFCD /* Level */,
 				8479660D1DDFBB7B0092FFCD /* Linked  List */,
 				8479660E1DDFBB990092FFCD /* Missile */,
+				847966191DDFE7A60092FFCD /* rtos */,
 				847966101DDFBBBB0092FFCD /* Player */,
 				847966111DDFBBDE0092FFCD /* Testbench */,
 				84E967301DD7C635005421F9 /* mbed_config.h */,

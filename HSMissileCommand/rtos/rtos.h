@@ -25,13 +25,13 @@
 #ifndef RTOS_H
 #define RTOS_H
 
-#include "rtos/Thread.h"
-#include "rtos/Mutex.h"
-#include "rtos/RtosTimer.h"
-#include "rtos/Semaphore.h"
-#include "rtos/Mail.h"
-#include "rtos/MemoryPool.h"
-#include "rtos/Queue.h"
+#include "Thread.h"
+#include "Mutex.h"
+#include "RtosTimer.h"
+#include "Semaphore.h"
+#include "Mail.h"
+#include "MemoryPool.h"
+#include "Queue.h"
 
 using namespace rtos;
 
