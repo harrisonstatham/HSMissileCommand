@@ -48,7 +48,6 @@
 		84E9672B1DD7C635005421F9 /* missile_public.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = missile_public.h; path = HSMissileCommand/missile_public.h; sourceTree = "<group>"; };
 		84E9672C1DD7C635005421F9 /* mbed */ = {isa = PBXFileReference; lastKnownFileType = folder; name = mbed; path = HSMissileCommand/mbed; sourceTree = "<group>"; };
 		84E9672D1DD7C635005421F9 /* MMA8452 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MMA8452; path = HSMissileCommand/MMA8452; sourceTree = "<group>"; };
-		84E9672E1DD7C635005421F9 /* GettingStarted.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = GettingStarted.html; path = HSMissileCommand/GettingStarted.html; sourceTree = "<group>"; };
 		84E9672F1DD7C635005421F9 /* city_landscape_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = city_landscape_private.h; path = HSMissileCommand/city_landscape_private.h; sourceTree = "<group>"; };
 		84E967301DD7C635005421F9 /* mbed_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mbed_config.h; path = HSMissileCommand/mbed_config.h; sourceTree = "<group>"; };
 		84E967311DD7C635005421F9 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = HSMissileCommand/player.cpp; sourceTree = "<group>"; };
@@ -83,6 +82,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8479660D1DDFBB7B0092FFCD /* Linked  List */ = {
+			isa = PBXGroup;
+			children = (
+				84E9672A1DD7C635005421F9 /* doubly_linked_list.h */,
+				84E9673A1DD7C635005421F9 /* doubly_linked_list.cpp */,
+			);
+			name = "Linked  List";
+			sourceTree = "<group>";
+		};
+		8479660E1DDFBB990092FFCD /* Missile */ = {
+			isa = PBXGroup;
+			children = (
+				84E9673B1DD7C635005421F9 /* missile_private.h */,
+				84E9672B1DD7C635005421F9 /* missile_public.h */,
+				84E967371DD7C635005421F9 /* missile.cpp */,
+			);
+			name = Missile;
+			sourceTree = "<group>";
+		};
+		8479660F1DDFBBA70092FFCD /* City Landscape */ = {
+			isa = PBXGroup;
+			children = (
+				84E9672F1DD7C635005421F9 /* city_landscape_private.h */,
+				84E967361DD7C635005421F9 /* city_landscape_public.h */,
+				84E967351DD7C635005421F9 /* city_landscape.cpp */,
+			);
+			name = "City Landscape";
+			sourceTree = "<group>";
+		};
+		847966101DDFBBBB0092FFCD /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				84E967381DD7C635005421F9 /* player_private.h */,
+				84E9673F1DD7C635005421F9 /* player_public.h */,
+				84E967311DD7C635005421F9 /* player.cpp */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
+		847966111DDFBBDE0092FFCD /* Testbench */ = {
+			isa = PBXGroup;
+			children = (
+				84E967401DD7C635005421F9 /* testbench.h */,
+				84E9673C1DD7C635005421F9 /* testbench.cpp */,
+			);
+			name = Testbench;
+			sourceTree = "<group>";
+		};
+		847966121DDFBBF40092FFCD /* Other Files */ = {
+			isa = PBXGroup;
+			children = (
+				84E967341DD7C635005421F9 /* mbed.bld */,
+				84E9673D1DD7C635005421F9 /* MMA8452.lib */,
+				84E967431DD7C635005421F9 /* 4DGL-uLCD-SE.lib */,
+				84E967441DD7C635005421F9 /* wave_player.lib */,
+			);
+			name = "Other Files";
+			sourceTree = "<group>";
+		};
+		847966161DDFBD850092FFCD /* Level */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Level;
+			sourceTree = "<group>";
+		};
 		84E966801DD69307005421F9 = {
 			isa = PBXGroup;
 			children = (
@@ -102,32 +167,21 @@
 		84E967271DD7C24A005421F9 /* HSMissileCommand */ = {
 			isa = PBXGroup;
 			children = (
+				847966121DDFBBF40092FFCD /* Other Files */,
 				84E9672C1DD7C635005421F9 /* mbed */,
 				84E9672D1DD7C635005421F9 /* MMA8452 */,
 				84E967321DD7C635005421F9 /* 4DGL-uLCD-SE */,
 				84E967411DD7C635005421F9 /* SDFileSystem */,
 				84E967421DD7C635005421F9 /* wave_player */,
-				84E9672A1DD7C635005421F9 /* doubly_linked_list.h */,
-				84E9672B1DD7C635005421F9 /* missile_public.h */,
-				84E9672E1DD7C635005421F9 /* GettingStarted.html */,
-				84E9672F1DD7C635005421F9 /* city_landscape_private.h */,
+				8479660F1DDFBBA70092FFCD /* City Landscape */,
+				847966161DDFBD850092FFCD /* Level */,
+				8479660D1DDFBB7B0092FFCD /* Linked  List */,
+				8479660E1DDFBB990092FFCD /* Missile */,
+				847966101DDFBBBB0092FFCD /* Player */,
+				847966111DDFBBDE0092FFCD /* Testbench */,
 				84E967301DD7C635005421F9 /* mbed_config.h */,
-				84E967311DD7C635005421F9 /* player.cpp */,
-				84E967331DD7C635005421F9 /* Makefile */,
-				84E967341DD7C635005421F9 /* mbed.bld */,
-				84E967351DD7C635005421F9 /* city_landscape.cpp */,
-				84E967361DD7C635005421F9 /* city_landscape_public.h */,
-				84E967371DD7C635005421F9 /* missile.cpp */,
-				84E967381DD7C635005421F9 /* player_private.h */,
 				84E967391DD7C635005421F9 /* globals.h */,
-				84E9673A1DD7C635005421F9 /* doubly_linked_list.cpp */,
-				84E9673B1DD7C635005421F9 /* missile_private.h */,
-				84E967401DD7C635005421F9 /* testbench.h */,
-				84E9673C1DD7C635005421F9 /* testbench.cpp */,
-				84E9673D1DD7C635005421F9 /* MMA8452.lib */,
-				84E9673F1DD7C635005421F9 /* player_public.h */,
-				84E967431DD7C635005421F9 /* 4DGL-uLCD-SE.lib */,
-				84E967441DD7C635005421F9 /* wave_player.lib */,
+				84E967331DD7C635005421F9 /* Makefile */,
 				84E9668C1DD69307005421F9 /* main.cpp */,
 			);
 			name = HSMissileCommand;

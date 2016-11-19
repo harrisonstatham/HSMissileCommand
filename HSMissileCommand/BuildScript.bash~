@@ -8,4 +8,10 @@ make
 
 cp -f .build/MissileCommand.bin /Volumes/MBED/MissileCommand.bin
 
+# Clear the screen of all the junk.
+clear
+
+# List all of the files in the directory of the MBED to make sure it worked.
+
 ls -a /Volumes/MBED/
+

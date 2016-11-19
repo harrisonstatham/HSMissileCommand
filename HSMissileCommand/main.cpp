@@ -18,8 +18,6 @@
 #include "player_public.h"
 
 
-
-
 /***********************************************************************
  * Defines & Macros
  *
@@ -153,6 +151,59 @@ void PrintScoreToScreen();
 void PrintLivesToScreen();
 
 
+
+/**
+ * @struct  Level
+ * @brief   A struct describing the current level.
+ */
+
+typedef struct Level {
+    
+    uint32_t index;
+    uint32_t numMissilesMax;
+    
+} Level;
+
+
+// Define some constants in memory for each level.
+// Limit to 10 levels say.
+
+const Level levels[10] = {
+    
+    {.index = 1, .numMissilesMax = 25},
+    {.index = 2, .numMissilesMax = 50},
+    {.index = 3, .numMissilesMax = 75},
+    {.index = 4, .numMissilesMax = 100},
+    {.index = 5, .numMissilesMax = 125},
+    {.index = 6, .numMissilesMax = 150},
+    {.index = 7, .numMissilesMax = 150},
+    {.index = 8, .numMissilesMax = 175},
+    {.index = 9, .numMissilesMax = 200},
+    {.index = 10, .numMissilesMax = 300}
+};
+
+
+/**
+ * NextLevel
+ *
+ * @param currentLevel  A pointer (Level *) to the current level.
+ */
+
+void NextLevel(Level *currentLevel);
+
+
+
+
+
+/**
+ * PrintLevelToScreen
+ *
+ * @brief   Print the current level to the screen.
+ */
+
+void PrintLevelToScreen(Level *currentLevel);
+
+
 /**
  * playSound
  *
@@ -160,6 +211,11 @@ void PrintLivesToScreen();
  * @param wav   A string (char *) to the file to play.
  */
 void playSound(char* wav);
+
+
+
+
+
 
 
 
@@ -193,6 +249,11 @@ SDFileSystem    sd(p5, p6, p7, p8, "sd"); // mosi, miso, sck, cs
 
 uint32_t        playerScore = 0;
 uint32_t        playerLives = 1;
+
+Level           currentLevel = levels[0];
+
+
+
 
 /***********************************************************************
  * Main
@@ -254,6 +315,8 @@ int main()
         
         PrintLivesToScreen();
         
+        PrintLevelToScreen(&currentLevel);
+        
         #ifdef HSDEBUG
         
         
@@ -271,7 +334,29 @@ int main()
         // 3. Update player position
         
         if(rightbtnPressed && leftbtnPressed) {
-            // do level advance here.    
+            // do level advance here.
+            
+            #ifdef HSDEBUG
+                        
+                pc.printf("Going to next level.\n\r");
+            
+            #endif
+            
+            NextLevel(&currentLevel);
+            
+            #ifdef HSDEBUG
+                        
+                pc.printf("On next level.\n\r");
+                        
+            #endif
+            
+            if(CheckGameOver()) {
+                
+                break;
+            }
+            
+            // Go to next iteration of loop, to start next level.
+            continue;
         }
         
         if(rightbtnPressed) {
@@ -794,8 +879,81 @@ void PrintLivesToScreen() {
 }
 
 
+/**
+ * PrintLevelToScreen
+ *
+ * @brief   Print the current level to the screen.
+ */
+
+void PrintLevelToScreen(Level *level) {
+    
+    char text[12];
+    sprintf(text, "Lev: %d", level->index);
+    
+    uLCD.text_string(text, '\x00', '\x03', FONT_7X8, GREEN);
+}
 
 
+
+
+
+
+/**
+ * NextLevel
+ *
+ * @param currentLevel  A pointer (Level *) to the current level.
+ */
+
+void NextLevel(Level *currentLevel) {
+    
+    // Get the next level.
+    
+    if(currentLevel == NULL) {
+        
+        *currentLevel = levels[0];
+        
+    } else if(currentLevel->index == 10) {
+        
+        // do nothing since this is the last level.
+        
+    } else {
+        
+        *currentLevel = levels[currentLevel->index];
+    }
+    
+    // Clear all of the current missiles on the screen.
+    // IE destroy the missile list.
+    DLinkedList *missiles = get_missile_list();
+    
+    LLNode *head = missiles->head;
+    MISSILE *m   = NULL;
+    
+    while(head) {
+        
+        m = (MISSILE *) head->data;
+        m->status = MISSILE_EXPLODED;
+        head = head->next;
+    }
+    
+    
+    // Clear all of the user missiles on the screen.
+    // IE destroy the user missile list.
+    PLAYER player = player_get_info();
+    DLinkedList *pmissiles = player.playerMissiles;
+    head = pmissiles->head;
+    
+    PLAYER_MISSILE *mp = NULL;
+    
+    while(head) {
+        
+        mp = (PLAYER_MISSILE *) head->data;
+        mp->status = PMISSILE_EXPLODED;
+        head = head->next;
+    }
+    
+    
+    
+}
 
 
 
