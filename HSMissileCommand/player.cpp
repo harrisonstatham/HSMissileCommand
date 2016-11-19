@@ -17,7 +17,8 @@ void player_init(void) {
 }
 
 // move player PLAYER_DELTA pixels to the left
-void player_moveLeft(void) { 
+void player_moveLeft(void) {
+    
     if (player.x-player.delta >= 0) {
         player_draw(BACKGROUND_COLOR);
         player.x-=player.delta;        

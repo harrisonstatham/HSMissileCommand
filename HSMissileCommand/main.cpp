@@ -18,8 +18,6 @@
 #include "player_public.h"
 
 
-
-
 /***********************************************************************
  * Defines & Macros
  *
@@ -153,6 +151,66 @@ void PrintScoreToScreen();
 void PrintLivesToScreen();
 
 
+
+/**
+ * @struct  Level
+ * @brief   A struct describing the current level.
+ */
+
+typedef struct Level {
+    
+    uint32_t index;
+    uint32_t numMissilesMax;
+    
+} Level;
+
+
+// Define some constants in memory for each level.
+// Limit to 10 levels say.
+
+const Level levels[10] = {
+    
+    {.index = 1, .numMissilesMax = 2},
+    {.index = 2, .numMissilesMax = 5},
+    {.index = 3, .numMissilesMax = 5},
+    {.index = 4, .numMissilesMax = 100},
+    {.index = 5, .numMissilesMax = 125},
+    {.index = 6, .numMissilesMax = 150},
+    {.index = 7, .numMissilesMax = 150},
+    {.index = 8, .numMissilesMax = 175},
+    {.index = 9, .numMissilesMax = 200},
+    {.index = 10, .numMissilesMax = 300}
+};
+
+
+/**
+ * NextLevel
+ *
+ * @param currentLevel  A pointer (Level *) to the current level.
+ */
+
+void NextLevel(Level *currentLevel);
+
+
+/**
+ * CanGoToNextLevel
+ *
+ * @return              A boolean determining if the next level can be loaded.
+ */
+
+bool CanGoToNextLevel();
+
+
+
+/**
+ * PrintLevelToScreen
+ *
+ * @brief   Print the current level to the screen.
+ */
+
+void PrintLevelToScreen(Level *currentLevel);
+
+
 /**
  * playSound
  *
@@ -160,6 +218,11 @@ void PrintLivesToScreen();
  * @param wav   A string (char *) to the file to play.
  */
 void playSound(char* wav);
+
+
+
+
+
 
 
 
@@ -193,6 +256,11 @@ SDFileSystem    sd(p5, p6, p7, p8, "sd"); // mosi, miso, sck, cs
 
 uint32_t        playerScore = 0;
 uint32_t        playerLives = 1;
+
+Level           currentLevel = levels[0];
+
+
+
 
 /***********************************************************************
  * Main
@@ -237,6 +305,7 @@ int main()
     int leftbtnPressed  = 0;
     int firebtnPressed  = 0;
     
+    uint32_t numMissilesThisLevel = 0;
     
     // Main game loop
     while(1)
@@ -253,6 +322,12 @@ int main()
         PrintScoreToScreen();
         
         PrintLivesToScreen();
+        
+        PrintLevelToScreen(&currentLevel);
+        
+        
+        numMissilesThisLevel = getMissilesThisLevel();
+        
         
         #ifdef HSDEBUG
         
@@ -271,7 +346,34 @@ int main()
         // 3. Update player position
         
         if(rightbtnPressed && leftbtnPressed) {
-            // do level advance here.    
+            // do level advance here.
+            
+            #ifdef HSDEBUG
+                        
+                pc.printf("Going to next level.\n\r");
+            
+            #endif
+            
+            NextLevel(&currentLevel);
+            
+            #ifdef HSDEBUG
+                        
+                pc.printf("On next level.\n\r");
+                        
+            #endif
+            
+            // Wait for a little to slow down the code.
+            // As it is a human cant press both buttons, and remove their fingers without
+            // it advancing multiple levels.
+            wait(0.5);
+            
+            if(CheckGameOver()) {
+                
+                break;
+            }
+            
+            // Go to next iteration of loop, to start next level.
+            continue;
         }
         
         if(rightbtnPressed) {
@@ -326,6 +428,32 @@ int main()
         if(CheckGameOver()) {
             
             break;
+        
+        }
+        
+        
+        // 7. Check for next level.
+        if(numMissilesThisLevel >= currentLevel.numMissilesMax) {
+            
+            // Get the missile list and find out if all of them have been destroyed.
+            // If that is true, then we can advance to the next level.
+            
+            #ifdef HSDEBUG
+                pc.printf("Satisfied condition for next level.\n\r");
+            #endif
+            
+            // Stop drawing new missiles to the screen.
+            setContinueToDrawMissiles(false);
+            
+            
+            if(CanGoToNextLevel()) {
+                
+                #ifdef HSDEBUG
+                    pc.printf("Going to next level.\n\r");
+                #endif
+                
+                NextLevel(&currentLevel);
+            }
         }
         
     }
@@ -794,11 +922,112 @@ void PrintLivesToScreen() {
 }
 
 
+/**
+ * PrintLevelToScreen
+ *
+ * @brief   Print the current level to the screen.
+ */
+
+void PrintLevelToScreen(Level *level) {
+    
+    char text[12];
+    sprintf(text, "Lev: %d", level->index);
+    
+    uLCD.text_string(text, '\x00', '\x03', FONT_7X8, GREEN);
+}
 
 
 
 
 
+
+/**
+ * NextLevel
+ *
+ * @param currentLevel  A pointer (Level *) to the current level.
+ */
+
+void NextLevel(Level *currentLevel) {
+    
+    // Get the next level.
+    
+    if(currentLevel == NULL) {
+        
+        *currentLevel = levels[0];
+        
+    } else if(currentLevel->index == 10) {
+        
+        // do nothing since this is the last level.
+        
+    } else {
+        
+        *currentLevel = levels[currentLevel->index];
+    }
+    
+    // Clear all of the current missiles on the screen.
+    // IE destroy the missile list.
+    DLinkedList *missiles = get_missile_list();
+    
+    LLNode *head = missiles->head;
+    MISSILE *m   = NULL;
+    
+    while(head) {
+        
+        m = (MISSILE *) head->data;
+        m->status = MISSILE_EXPLODED;
+        head = head->next;
+    }
+    
+    
+    // Clear all of the user missiles on the screen.
+    // IE destroy the user missile list.
+    PLAYER player = player_get_info();
+    DLinkedList *pmissiles = player.playerMissiles;
+    head = pmissiles->head;
+    
+    PLAYER_MISSILE *mp = NULL;
+    
+    while(head) {
+        
+        mp = (PLAYER_MISSILE *) head->data;
+        mp->status = PMISSILE_EXPLODED;
+        head = head->next;
+    }
+    
+    
+    // Reset the missile generator.
+    setContinueToDrawMissiles(true);
+}
+
+
+
+/**
+ * CanGoToNextLevel
+ *
+ * @return              A boolean determining if the next level can be loaded.
+ */
+
+bool CanGoToNextLevel() {
+    
+    DLinkedList *missiles = get_missile_list();
+    
+    LLNode *head = missiles->head;
+    MISSILE *m   = NULL;
+    
+    while(head) {
+        
+        m = (MISSILE *) head->data;
+        
+        if(m->status == MISSILE_ACTIVE) {
+            
+            return false;
+        }
+        
+        head = head->next;
+    }
+    
+    return true;
+}
 
 
 

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Clean up everything first.
+make clean
+
 # Call Make
 
 make
