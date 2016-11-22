@@ -82,12 +82,73 @@ void player_missile_draw(void)
 
 // ==== player_private.h implementation ====
 void player_draw(int color) {
-    uLCD.filled_rectangle(player.x, player.y, player.x+player.width, player.y+player.height, color); 
+    
+    
+    uLCD.filled_rectangle(player.x, player.y, player.x+player.width, player.y+player.height, color);
+    
+    uLCD.filled_rectangle(player.x,   player.y+5, player.x,   player.y-4, color);
+    uLCD.filled_rectangle(player.x+5, player.y+5, player.x+5, player.y-10, color);
+    uLCD.filled_rectangle(player.x+10,player.y+5, player.x+10,player.y-4, color);
+
     uLCD.filled_rectangle(player.x+player.delta, player.y-player.delta, player.x+player.width-player.delta, player.y+player.height, color);
+    
+    
+    
+    /*
+     #define PLAYER_DELTA 3 // used in design of player, pixels to move, euclidean distance
+     #define PLAYER_WIDTH 10
+     #define PLAYER_HEIGHT 3
+     */
+    
+
+    
+    
+    
+    /*
+     
+    // This is a galaga ship....
+    uLCD.filled_rectangle(player.x,   player.y+3, player.x,   player.y-5, color);
+    uLCD.filled_rectangle(player.x+1, player.y+2, player.x+1, player.y-1, color);
+    uLCD.filled_rectangle(player.x+2, player.y+1, player.x+2, player.y-7, color);
+    uLCD.filled_rectangle(player.x+3, player.y+2, player.x+3, player.y-5, color);
+    uLCD.filled_rectangle(player.x+4, player.y+2, player.x+4, player.y-7, color);
+    
+    // The middle of ship.
+    uLCD.filled_rectangle(player.x+5, player.y+3, player.x+5, player.y-11, color);
+    
+    // The right side of ship.
+    uLCD.filled_rectangle(player.x+6, player.y+2, player.x+6, player.y-7, color);
+    uLCD.filled_rectangle(player.x+7, player.y+2, player.x+7, player.y-5, color);
+    uLCD.filled_rectangle(player.x+8, player.y+1, player.x+8, player.y-7, color);
+    uLCD.filled_rectangle(player.x+9, player.y+2, player.x+9, player.y-1, color);
+    uLCD.filled_rectangle(player.x+10,player.y+3, player.x+10,player.y-5, color);
+    
+     */
+    
+    
+    
+    
 }
+
+
+
+
 
 // destory and "erase" the player off the screen. change status to DESTROYED
 void player_destroy() {
     player_draw(BACKGROUND_COLOR);
     player.status = DESTROYED;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

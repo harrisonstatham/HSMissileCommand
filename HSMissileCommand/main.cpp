@@ -142,9 +142,9 @@ int main()
     while(1) {
         
         
-        showIntroScreen(3);
+        //showIntroScreen(3);
         
-        difficulty = ShowMainMenu(left_pb, right_pb, aux_pb, fire_pb);
+        //difficulty = ShowMainMenu(left_pb, right_pb, aux_pb, fire_pb);
         
         player_init();
         city_landscape_init(numCities(4, false));
