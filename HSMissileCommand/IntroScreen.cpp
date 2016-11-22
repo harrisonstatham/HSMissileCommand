@@ -8,6 +8,20 @@
 
 #include "IntroScreen.hpp"
 
+
+
+
+/**
+ * Show Intro Screen
+ *
+ * @brief           Show the intro screen to the user.
+ * @description     The intro screen is some text and then explosions
+ *                  that eat away at the text. This is similar to the
+ *                  real Missile Command intro screen.
+ *
+ * @author          Harrison Statham
+ */
+
 void showIntroScreen(uint32_t seconds) {
     
     // Clear the screen just in case there is something on it.

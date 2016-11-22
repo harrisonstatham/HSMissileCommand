@@ -12,6 +12,7 @@
 		8479662B1DE3DB390092FFCD /* PrintToLCD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 847966291DE3DB390092FFCD /* PrintToLCD.cpp */; };
 		8479662F1DE4837C0092FFCD /* IntroScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8479662D1DE4837C0092FFCD /* IntroScreen.cpp */; };
 		847966331DE48A4D0092FFCD /* Explosions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 847966311DE48A4D0092FFCD /* Explosions.cpp */; };
+		847966371DE48EFC0092FFCD /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 847966351DE48EFC0092FFCD /* MainMenu.cpp */; };
 		84E9668D1DD69307005421F9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E9668C1DD69307005421F9 /* main.cpp */; };
 		84E967451DD7C635005421F9 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E967311DD7C635005421F9 /* player.cpp */; };
 		84E967461DD7C635005421F9 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 84E967331DD7C635005421F9 /* Makefile */; };
@@ -58,6 +59,8 @@
 		8479662E1DE4837C0092FFCD /* IntroScreen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = IntroScreen.hpp; path = HSMissileCommand/IntroScreen.hpp; sourceTree = "<group>"; };
 		847966311DE48A4D0092FFCD /* Explosions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Explosions.cpp; path = HSMissileCommand/Explosions.cpp; sourceTree = "<group>"; };
 		847966321DE48A4D0092FFCD /* Explosions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Explosions.hpp; path = HSMissileCommand/Explosions.hpp; sourceTree = "<group>"; };
+		847966351DE48EFC0092FFCD /* MainMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainMenu.cpp; path = HSMissileCommand/MainMenu.cpp; sourceTree = "<group>"; };
+		847966361DE48EFC0092FFCD /* MainMenu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MainMenu.hpp; path = HSMissileCommand/MainMenu.hpp; sourceTree = "<group>"; };
 		84E966891DD69307005421F9 /* HSMissileCommand */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HSMissileCommand; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E9668C1DD69307005421F9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = HSMissileCommand/main.cpp; sourceTree = "<group>"; };
 		84E9672A1DD7C635005421F9 /* doubly_linked_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = doubly_linked_list.h; path = HSMissileCommand/doubly_linked_list.h; sourceTree = "<group>"; };
@@ -176,6 +179,7 @@
 				8479662C1DE483600092FFCD /* IntroScreen */,
 				847966161DDFBD850092FFCD /* Level */,
 				8479660D1DDFBB7B0092FFCD /* Linked  List */,
+				847966341DE48EE20092FFCD /* Main Menu */,
 				8479660E1DDFBB990092FFCD /* Missile */,
 				847966101DDFBBBB0092FFCD /* Player */,
 				847966281DE3DB1F0092FFCD /* Print */,
@@ -208,6 +212,15 @@
 				847966311DE48A4D0092FFCD /* Explosions.cpp */,
 			);
 			name = Explosions;
+			sourceTree = "<group>";
+		};
+		847966341DE48EE20092FFCD /* Main Menu */ = {
+			isa = PBXGroup;
+			children = (
+				847966361DE48EFC0092FFCD /* MainMenu.hpp */,
+				847966351DE48EFC0092FFCD /* MainMenu.cpp */,
+			);
+			name = "Main Menu";
 			sourceTree = "<group>";
 		};
 		84E966801DD69307005421F9 = {
@@ -313,6 +326,7 @@
 				84E9674A1DD7C635005421F9 /* testbench.cpp in Sources */,
 				8479662F1DE4837C0092FFCD /* IntroScreen.cpp in Sources */,
 				8479662B1DE3DB390092FFCD /* PrintToLCD.cpp in Sources */,
+				847966371DE48EFC0092FFCD /* MainMenu.cpp in Sources */,
 				84E9668D1DD69307005421F9 /* main.cpp in Sources */,
 				847966231DE38CCA0092FFCD /* HSMissileCommand.cpp in Sources */,
 				84E967491DD7C635005421F9 /* doubly_linked_list.cpp in Sources */,

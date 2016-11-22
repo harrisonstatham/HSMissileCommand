@@ -1,7 +1,8 @@
-main.o: ../main.cpp .././mbed_config.h ../mbed/mbed.h ../mbed/platform.h \
- ../mbed/TARGET_LPC1768/device.h ../mbed/TARGET_LPC1768/objects.h \
- ../mbed/TARGET_LPC1768/cmsis.h ../mbed/TARGET_LPC1768/LPC17xx.h \
- ../mbed/TARGET_LPC1768/core_cm3.h ../mbed/TARGET_LPC1768/core_cmInstr.h \
+MainMenu.o: ../MainMenu.cpp .././mbed_config.h ../MainMenu.hpp \
+ ../mbed/mbed.h ../mbed/platform.h ../mbed/TARGET_LPC1768/device.h \
+ ../mbed/TARGET_LPC1768/objects.h ../mbed/TARGET_LPC1768/cmsis.h \
+ ../mbed/TARGET_LPC1768/LPC17xx.h ../mbed/TARGET_LPC1768/core_cm3.h \
+ ../mbed/TARGET_LPC1768/core_cmInstr.h \
  ../mbed/TARGET_LPC1768/core_cmFunc.h \
  ../mbed/TARGET_LPC1768/system_LPC17xx.h \
  ../mbed/TARGET_LPC1768/cmsis_nvic.h ../mbed/TARGET_LPC1768/PortNames.h \
@@ -23,18 +24,17 @@ main.o: ../main.cpp .././mbed_config.h ../mbed/mbed.h ../mbed/platform.h \
  ../mbed/TimerEvent.h ../mbed/us_ticker_api.h ../mbed/Timeout.h \
  ../mbed/LocalFileSystem.h ../mbed/FileSystemLike.h ../mbed/DirHandle.h \
  ../mbed/InterruptIn.h ../mbed/gpio_irq_api.h ../mbed/wait_api.h \
- ../mbed/sleep_api.h ../mbed/rtc_time.h ../wave_player/wave_player.h \
- ../mbed/./mbed.h ../MMA8452/MMA8452.h ../globals.h \
- ../4DGL-uLCD-SE/uLCD_4DGL.h ../SDFileSystem/SDFileSystem.h \
+ ../mbed/sleep_api.h ../mbed/rtc_time.h ../globals.h \
+ ../4DGL-uLCD-SE/uLCD_4DGL.h ../mbed/./mbed.h \
+ ../SDFileSystem/SDFileSystem.h \
  ../SDFileSystem/FATFileSystem/FATFileSystem.h ../mbed/./FileSystemLike.h \
  ../mbed/./FileHandle.h ../SDFileSystem/FATFileSystem/ChaN/ff.h \
  ../SDFileSystem/FATFileSystem/ChaN/integer.h \
- ../SDFileSystem/FATFileSystem/ChaN/ffconf.h ../city_landscape_public.h \
- ../missile_public.h ../doubly_linked_list.h ../player_public.h \
- ../HSMissileCommand.hpp ../Level.hpp ../Explosions.hpp ../PrintToLCD.hpp \
- ../IntroScreen.hpp ../MainMenu.hpp
+ ../SDFileSystem/FATFileSystem/ChaN/ffconf.h
 
 .././mbed_config.h:
+
+../MainMenu.hpp:
 
 ../mbed/mbed.h:
 
@@ -170,15 +170,11 @@ main.o: ../main.cpp .././mbed_config.h ../mbed/mbed.h ../mbed/platform.h \
 
 ../mbed/rtc_time.h:
 
-../wave_player/wave_player.h:
-
-../mbed/./mbed.h:
-
-../MMA8452/MMA8452.h:
-
 ../globals.h:
 
 ../4DGL-uLCD-SE/uLCD_4DGL.h:
+
+../mbed/./mbed.h:
 
 ../SDFileSystem/SDFileSystem.h:
 
@@ -193,23 +189,3 @@ main.o: ../main.cpp .././mbed_config.h ../mbed/mbed.h ../mbed/platform.h \
 ../SDFileSystem/FATFileSystem/ChaN/integer.h:
 
 ../SDFileSystem/FATFileSystem/ChaN/ffconf.h:
-
-../city_landscape_public.h:
-
-../missile_public.h:
-
-../doubly_linked_list.h:
-
-../player_public.h:
-
-../HSMissileCommand.hpp:
-
-../Level.hpp:
-
-../Explosions.hpp:
-
-../PrintToLCD.hpp:
-
-../IntroScreen.hpp:
-
-../MainMenu.hpp:

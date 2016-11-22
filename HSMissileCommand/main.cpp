@@ -26,6 +26,8 @@
 
 #include "IntroScreen.hpp"
 
+#include "MainMenu.hpp"
+
 
 /***********************************************************************
  * Defines & Macros
@@ -169,6 +171,7 @@ MMA8452         accel(p28, p27, 100000);
 DigitalIn       left_pb(p21);
 DigitalIn       right_pb(p22); 
 DigitalIn       fire_pb(p23);
+DigitalIn       aux_pb(p24);
 
 uLCD_4DGL       uLCD(p9,p10,p11); // serial tx, serial rx, reset pin;
 
@@ -187,7 +190,7 @@ int32_t        playerLives = 1;
 Level           currentLevel = levels[0];
 
 
-
+uint32_t        difficulty = 0;
 
 
 
@@ -220,6 +223,7 @@ int main()
     left_pb.mode(PullUp); 
     right_pb.mode(PullUp);
     fire_pb.mode(PullUp);
+    aux_pb.mode(PullUp);
     
     
     /*******************************************
@@ -236,7 +240,7 @@ int main()
     
     showIntroScreen(3);
     
-    
+    difficulty = ShowMainMenu(left_pb, right_pb, aux_pb, fire_pb);
     
     player_init();
     city_landscape_init(numCities(3, false));
