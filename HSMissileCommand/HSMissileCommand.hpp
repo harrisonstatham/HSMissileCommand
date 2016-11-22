@@ -16,7 +16,21 @@
 #include "player_public.h"
 
 
+typedef struct _HSMissileCommand {
 
+    PLAYER *player;
+    
+    DLinkedList *missiles_bad;
+    DLinkedList *missiles_good;
+    
+    
+    uint32_t playerScore;
+    uint32_t playerLives;
+    uint32_t levelIndex;
+    
+    
+
+} HSMissileCommand;
 
 
 

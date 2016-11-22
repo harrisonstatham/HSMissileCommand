@@ -20,7 +20,11 @@
 #include "HSMissileCommand.hpp"
 #include "Level.hpp"
 
+#include "Explosions.hpp"
+
 #include "PrintToLCD.hpp"
+
+#include "IntroScreen.hpp"
 
 
 /***********************************************************************
@@ -117,16 +121,7 @@ void UpdatePlayerStatus(void);
 
 
 
-/**
- * AnimateExplosionAtLocation
- *
- * @brief           Animate an explosion of a missile at a given location.
- * @param x         The x location of the explosion.
- * @param y         The y location of the explosion.
- * @param isCity    Is the explosion a city? If so, do some other fancy stuff.
- */
 
-void AnimateExplosionAtLocation(uint32_t x, uint32_t y, bool isCity);
 
 
 /**
@@ -199,6 +194,15 @@ Level           currentLevel = levels[0];
 /***********************************************************************
  * Main
  *
+ *
+ *
+ * 1. The initial missile intercept radius should be 10 pixels.
+ * 2. The city explosion should be different than the missile.
+ * 3. Level should be in top left corner.
+ * 4. Score should be in top right corner.
+ * 5. Lives can be in lower left corner. 
+ * 6. 
+ *
  */
 
 int main()
@@ -228,6 +232,11 @@ int main()
      * 3. Missiles
      * 4. ...
      */
+    
+    
+    showIntroScreen(3);
+    
+    
     
     player_init();
     city_landscape_init(numCities(3, false));
@@ -438,7 +447,10 @@ uint32_t numCities(uint32_t setNumCities, bool shouldRead) {
         
         actualNumCities = (setNumCities >= MAX_NUM_CITY) ? MAX_NUM_CITY : 1;
         
-        pc.printf("numCities(): Tried to create: %d cities. Min = 1, Max = %d\n\r", setNumCities, MAX_NUM_CITY);
+        #ifdef HSDEBUG
+            pc.printf("numCities(): Tried to create: %d cities. Min = 1, Max = %d\n\r", setNumCities, MAX_NUM_CITY);
+        #endif
+        
     
     } else {
         
@@ -749,41 +761,6 @@ void UpdatePlayerStatus(void) {
 
 
 
-
-
-/**
- * AnimateExplosionAtLocation
- *
- * @brief           Animate an explosion of a missile at a given location.
- * @param x         The x location of the explosion.
- * @param y         The y location of the explosion.
- * @param isCity    Is the explosion a city? If so, do some other fancy stuff.
- */
-
-void AnimateExplosionAtLocation(uint32_t x, uint32_t y, bool isCity) {
-    
-    // We have two different animations for missiles and cities.
-    // Missiles are fairly simple. Cities will be a bit more dramatic...
-        
-    if(isCity) {
-        
-        // City destruction animation.
-        // Do something a bit more dramatic!
-        
-        
-        
-    } else {
-        
-        // Draw some circle of different colors around the missile coordinates.
-        uLCD.filled_circle(x, y , 5, RED);
-        wait(0.01);
-        uLCD.filled_circle(x, y , 3, LGREY);
-        wait(0.01);
-        uLCD.filled_circle(x, y , 3, BLACK);
-        wait(0.01);
-        uLCD.filled_circle(x, y , 5, BLACK);
-    }
-}
 
 
 
