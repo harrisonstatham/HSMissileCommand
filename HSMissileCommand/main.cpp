@@ -129,180 +129,188 @@ int main()
      * 4. ...
      */
     
-    
-    //showIntroScreen(3);
-    
-    //difficulty = ShowMainMenu(left_pb, right_pb, aux_pb, fire_pb);
-    
-    player_init();
-    city_landscape_init(numCities(3, false));
-    missile_init();
-    draw_cities();
-    
-    
+
     int rightbtnPressed = 0;
     int leftbtnPressed  = 0;
     int firebtnPressed  = 0;
     
     uint32_t numMissilesThisLevel = 0;
     
-    // Main game loop
-    while(1)
-    {
-        
-        // Update the missile speed & interval.
-        set_missile_speed(currentLevel.missileSpeed);
-        set_missile_interval(currentLevel.missileRate);
+    
+    while(1) {
         
         
-        missile_generator();
+        showIntroScreen(3);
         
-        player_draw(HSPLAYER_COLOR);
-        draw_landscape();
+        difficulty = ShowMainMenu(left_pb, right_pb, aux_pb, fire_pb);
         
-        // Print score after the missile generator so we can overwrite
-        // any of the pixels that might have been set by the missile
-        // generator.
-        PrintScoreToScreen(playerScore);
-        
-        PrintLivesToScreen(playerLives);
-        
-        PrintLevelToScreen(&currentLevel);
+        player_init();
+        city_landscape_init(numCities(4, false));
+        missile_init();
+        draw_cities();
         
         
-        numMissilesThisLevel = GetInterceptedMissileCount();
-        
-        
-        #ifdef HSDEBUG
-        
-        
-        
-        #endif
-        
-        // 1. Update missiles
-        // 2. Read input
-        
-        rightbtnPressed = !right_pb.read();
-        leftbtnPressed  = !left_pb.read();
-        firebtnPressed  = !fire_pb.read();
-        
-        
-        // 3. Update player position
-        
-        if(rightbtnPressed && leftbtnPressed) {
-            // do level advance here.
+        // Main game loop
+        while(1)
+        {
             
-            #ifdef HSDEBUG
-                        
+            // Update the missile speed & interval.
+            set_missile_speed(currentLevel.missileSpeed);
+            set_missile_interval(currentLevel.missileRate);
+            
+            
+            missile_generator();
+            
+            player_draw(HSPLAYER_COLOR);
+            draw_landscape();
+            
+            // Print score after the missile generator so we can overwrite
+            // any of the pixels that might have been set by the missile
+            // generator.
+            PrintScoreToScreen(playerScore);
+            
+            PrintLivesToScreen(playerLives);
+            
+            PrintLevelToScreen(&currentLevel);
+            
+            
+            numMissilesThisLevel = GetInterceptedMissileCount();
+            
+            
+#ifdef HSDEBUG
+            
+            
+            
+#endif
+            
+            // 1. Update missiles
+            // 2. Read input
+            
+            rightbtnPressed = !right_pb.read();
+            leftbtnPressed  = !left_pb.read();
+            firebtnPressed  = !fire_pb.read();
+            
+            
+            // 3. Update player position
+            
+            if(rightbtnPressed && leftbtnPressed) {
+                // do level advance here.
+                
+#ifdef HSDEBUG
+                
                 pc.printf("Going to next level.\n\r");
-            
-            #endif
-            
-            NextLevel(&currentLevel);
-            
-            #ifdef HSDEBUG
-                        
+                
+#endif
+                
+                NextLevel(&currentLevel);
+                
+#ifdef HSDEBUG
+                
                 pc.printf("On next level.\n\r");
-                        
-            #endif
+                
+#endif
+                
+                // Wait for a little to slow down the code.
+                // As it is a human cant press both buttons, and remove their fingers without
+                // it advancing multiple levels.
+                wait(0.5);
+                
+                if(CheckGameOver()) {
+                    
+                    break;
+                }
+                
+                // Go to next iteration of loop, to start next level.
+                continue;
+            }
             
-            // Wait for a little to slow down the code.
-            // As it is a human cant press both buttons, and remove their fingers without
-            // it advancing multiple levels.
-            wait(0.5);
+            if(rightbtnPressed) {
+                
+                player_moveRight();
+                
+#ifdef HSDEBUG
+                pc.printf("Moving right.\n\r");
+#endif
+            }
+            
+            if(leftbtnPressed) {
+                
+                player_moveLeft();
+                
+#ifdef HSDEBUG
+                pc.printf("Moving left.\n\r");
+#endif
+            }
+            
+            if(firebtnPressed) {
+                
+                player_fire();
+                
+#ifdef HSDEBUG
+                pc.printf("Firing.\n\r");
+#endif
+            }
+            
+            player_missile_draw();
+            
+            
+            // 4. Check for collisions
+            
+#ifdef HSDEBUG
+            pc.printf("Checking for collisions.\n\r");
+#endif
+            
+            UpdatePlayerStatus(&currentLevel);
+            
+            UpdateCityStatus(&currentLevel);
+            
+            UpdateMissileStatus(&currentLevel);
+            
+            
+            // 5. Redraw city landscape
+            draw_cities();
+            
+            
+            // 6. Check for endgame
             
             if(CheckGameOver()) {
                 
                 break;
             }
             
-            // Go to next iteration of loop, to start next level.
-            continue;
-        }
-        
-        if(rightbtnPressed) {
             
-            player_moveRight();
-            
-            #ifdef HSDEBUG
-                pc.printf("Moving right.\n\r");
-            #endif
-        }
-        
-        if(leftbtnPressed) {
-        
-            player_moveLeft();  
-            
-            #ifdef HSDEBUG
-                pc.printf("Moving left.\n\r");
-            #endif
-        }
-        
-        if(firebtnPressed) {
-            
-            player_fire();  
-            
-            #ifdef HSDEBUG
-                pc.printf("Firing.\n\r");
-            #endif
-        }
-        
-        player_missile_draw();
-        
-        
-        // 4. Check for collisions
-        
-        #ifdef HSDEBUG
-            pc.printf("Checking for collisions.\n\r");
-        #endif
-        
-        UpdatePlayerStatus(&currentLevel);
-        
-        UpdateCityStatus(&currentLevel);
-        
-        UpdateMissileStatus(&currentLevel);
-        
-        
-        // 5. Redraw city landscape
-        draw_cities();
-        
-        
-        // 6. Check for endgame
-        
-        if(CheckGameOver()) {
-            
-            break;
-        }
-        
-        
-        // 7. Check for next level.
-        if(numMissilesThisLevel >= currentLevel.numMissilesMax) {
-            
-            #ifdef HSDEBUG
+            // 7. Check for next level.
+            if(numMissilesThisLevel >= currentLevel.numMissilesMax) {
+                
+#ifdef HSDEBUG
                 pc.printf("Satisfied condition for next level.\n\r");
-            #endif
-            
-            // Stop drawing new missiles to the screen.
-            setContinueToDrawMissiles(false);
-            
-            
-            if(CanGoToNextLevel()) {
+#endif
                 
-                #ifdef HSDEBUG
+                // Stop drawing new missiles to the screen.
+                setContinueToDrawMissiles(false);
+                
+                
+                if(CanGoToNextLevel()) {
+                    
+#ifdef HSDEBUG
                     pc.printf("Going to next level.\n\r");
-                #endif
-                
-                NextLevel(&currentLevel);
-                
-                ResetInterceptedMissileCount();
+#endif
+                    
+                    NextLevel(&currentLevel);
+                    
+                    ResetInterceptedMissileCount();
+                }
             }
+            
         }
         
+        
+        
+        
+        
+        showGameOverScreen(5);
     }
     
-    // Show the game over menu here.
-    // more advanced in the future.
-    uLCD.printf("Game Over\n\r");
     
     // ===User implementations end===
     

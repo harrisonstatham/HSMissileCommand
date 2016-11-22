@@ -37,7 +37,7 @@ GCC_BIN = /usr/local/gcc-arm/bin/
 
 PROJECT = MissileCommand
 
-OBJECTS = MainMenu.o Explosions.o IntroScreen.o PrintToLCD.o Level.o HSMissileCommand.o city_landscape.o doubly_linked_list.o main.o missile.o player.o SDFileSystem/SDFileSystem.o SDFileSystem/FATFileSystem/FATDirHandle.o SDFileSystem/FATFileSystem/FATFileHandle.o SDFileSystem/FATFileSystem/FATFileSystem.o SDFileSystem/FATFileSystem/ChaN/ccsbcs.o SDFileSystem/FATFileSystem/ChaN/diskio.o SDFileSystem/FATFileSystem/ChaN/ff.o 4DGL-uLCD-SE/uLCD_4DGL_Graphics.o 4DGL-uLCD-SE/uLCD_4DGL_Media.o 4DGL-uLCD-SE/uLCD_4DGL_Text.o 4DGL-uLCD-SE/uLCD_4DGL_main.o MMA8452/MMA8452.o wave_player/wave_player.o
+OBJECTS = GameOverScreen.o MainMenu.o Explosions.o IntroScreen.o PrintToLCD.o Level.o HSMissileCommand.o city_landscape.o doubly_linked_list.o main.o missile.o player.o SDFileSystem/SDFileSystem.o SDFileSystem/FATFileSystem/FATDirHandle.o SDFileSystem/FATFileSystem/FATFileHandle.o SDFileSystem/FATFileSystem/FATFileSystem.o SDFileSystem/FATFileSystem/ChaN/ccsbcs.o SDFileSystem/FATFileSystem/ChaN/diskio.o SDFileSystem/FATFileSystem/ChaN/ff.o 4DGL-uLCD-SE/uLCD_4DGL_Graphics.o 4DGL-uLCD-SE/uLCD_4DGL_Media.o 4DGL-uLCD-SE/uLCD_4DGL_Text.o 4DGL-uLCD-SE/uLCD_4DGL_main.o MMA8452/MMA8452.o wave_player/wave_player.o
 
 SYS_OBJECTS = mbed/TARGET_LPC1768/TOOLCHAIN_GCC_ARM/cmsis_nvic.o mbed/TARGET_LPC1768/TOOLCHAIN_GCC_ARM/retarget.o mbed/TARGET_LPC1768/TOOLCHAIN_GCC_ARM/startup_LPC17xx.o mbed/TARGET_LPC1768/TOOLCHAIN_GCC_ARM/system_LPC17xx.o
 

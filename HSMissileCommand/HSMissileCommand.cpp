@@ -272,11 +272,14 @@ void UpdateMissileStatus(Level *l) {
     PLAYER_MISSILE *mp  = NULL;
     MISSILE *mb         = NULL;
     
+    /*
     uint32_t bad_x;
     uint32_t bad_y;
     
     uint32_t good_x;
     uint32_t good_y;
+    */
+    
     
     // Walk the first list and compare.
     while(headgood) {
@@ -284,10 +287,11 @@ void UpdateMissileStatus(Level *l) {
         // Get the current missile.
         mp = (PLAYER_MISSILE *) headgood->data;
         
-        
+        /*
         good_x = mp->x;
         good_y = mp->y;
-        
+        */
+         
         // Walk the second list and compare.
         while(headbad) {
             

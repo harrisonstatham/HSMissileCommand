@@ -33,7 +33,7 @@ HSMissileCommand.o: ../HSMissileCommand.cpp .././mbed_config.h \
  ../SDFileSystem/FATFileSystem/ChaN/ffconf.h ../missile_public.h \
  ../doubly_linked_list.h ../city_landscape_public.h ../player_public.h \
  ../Level.hpp ../Explosions.hpp ../PrintToLCD.hpp ../IntroScreen.hpp \
- ../MainMenu.hpp
+ ../MainMenu.hpp ../GameOverScreen.hpp
 
 .././mbed_config.h:
 
@@ -210,3 +210,5 @@ HSMissileCommand.o: ../HSMissileCommand.cpp .././mbed_config.h \
 ../IntroScreen.hpp:
 
 ../MainMenu.hpp:
+
+../GameOverScreen.hpp:

@@ -32,7 +32,7 @@ main.o: ../main.cpp .././mbed_config.h ../mbed/mbed.h ../mbed/platform.h \
  ../SDFileSystem/FATFileSystem/ChaN/ffconf.h ../city_landscape_public.h \
  ../missile_public.h ../doubly_linked_list.h ../player_public.h \
  ../HSMissileCommand.hpp ../Level.hpp ../Explosions.hpp ../PrintToLCD.hpp \
- ../IntroScreen.hpp ../MainMenu.hpp
+ ../IntroScreen.hpp ../MainMenu.hpp ../GameOverScreen.hpp
 
 .././mbed_config.h:
 
@@ -213,3 +213,5 @@ main.o: ../main.cpp .././mbed_config.h ../mbed/mbed.h ../mbed/platform.h \
 ../IntroScreen.hpp:
 
 ../MainMenu.hpp:
+
+../GameOverScreen.hpp:
