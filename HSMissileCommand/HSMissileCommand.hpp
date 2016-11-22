@@ -9,6 +9,8 @@
 #ifndef HSMissileCommand_hpp
 #define HSMissileCommand_hpp
 
+#include <math.h>
+
 #include "mbed/mbed.h"
 
 #include "globals.h"
@@ -101,13 +103,23 @@ bool didMissileHit(CITY *city, MISSILE* missile);
 bool didMissileHitPlayer(MISSILE *missile, PLAYER *player);
 
 
+/**
+ * didMissileHitPlayer
+ *
+ * @brief   Check to see if a missile has hit the player.
+ * @return  True if the missile has hit the player. False otherwise.
+ */
+bool didMissileHitMissile(MISSILE *badmissile, PLAYER_MISSILE *goodmissile, float radius);
+
+
+
 
 /**
  * UpdateCityStatus
  *
  * @brief   Check to see if missiles have hit the city. If so update the cities.
  */
-void UpdateCityStatus(void);
+void UpdateCityStatus(Level *l);
 
 
 /**
@@ -115,8 +127,20 @@ void UpdateCityStatus(void);
  *
  * @brief   Walk both missile linked lists and check for collisions.
  */
-void UpdateMissileStatus(void);
+void UpdateMissileStatus(Level *l);
 
+/**
+ * ResetInterceptedMissilesThisLevel
+ *
+ */
+
+void ResetInterceptedMissileCount();
+
+/**
+ * GetInterceptedMissilesThisLevel
+ */
+
+uint32_t GetInterceptedMissileCount();
 
 /**
  * Check Player Status
@@ -124,7 +148,7 @@ void UpdateMissileStatus(void);
  * @brief   Walk the missile linked list and find out if a missile has hit
  *          the players ship!
  */
-void UpdatePlayerStatus(void);
+void UpdatePlayerStatus(Level *l);
 
 
 

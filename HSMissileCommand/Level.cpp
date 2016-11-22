@@ -84,6 +84,7 @@ void NextLevel(Level *currentLevel) {
 
 bool CanGoToNextLevel() {
     
+    /**
     DLinkedList *missiles = get_missile_list();
     
     LLNode *head = missiles->head;
@@ -100,6 +101,9 @@ bool CanGoToNextLevel() {
         
         head = head->next;
     }
+     
+    */
     
     return true;
 }
+

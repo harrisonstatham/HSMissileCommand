@@ -24,12 +24,12 @@
 
 typedef struct Level {
     
-    uint32_t index;
-    uint32_t numMissilesMax;
+    uint32_t    index;
+    uint32_t    numMissilesMax;
 
-    uint32_t missileSpeed;
-    uint32_t missileRate;
-    uint32_t interceptRadius;
+    uint32_t    missileSpeed;
+    uint32_t    missileRate;
+    float       interceptRadius;
 
 } Level;
 
@@ -43,72 +43,72 @@ const Level levels[10] = {
     {
         .index              = 1,
         .numMissilesMax     = 10,
-        .missileSpeed       = 2,
-        .missileRate        = 2,
-        .interceptRadius    = 2
+        .missileSpeed       = 6,
+        .missileRate        = 10,
+        .interceptRadius    = 10
     },
     {
         .index              = 2,
         .numMissilesMax     = 10,
-        .missileSpeed       = 2,
-        .missileRate        = 2,
-        .interceptRadius    = 2
+        .missileSpeed       = 6,
+        .missileRate        = 10,
+        .interceptRadius    = 10
     },
     {
         .index              = 3,
         .numMissilesMax     = 10,
-        .missileSpeed       = 2,
-        .missileRate        = 2,
-        .interceptRadius    = 2
+        .missileSpeed       = 5,
+        .missileRate        = 9,
+        .interceptRadius    = 9
     },
     {
         .index              = 4,
         .numMissilesMax     = 10,
-        .missileSpeed       = 2,
-        .missileRate        = 2,
-        .interceptRadius    = 2
+        .missileSpeed       = 5,
+        .missileRate        = 9,
+        .interceptRadius    = 8
     },
     {
         .index              = 5,
         .numMissilesMax     = 10,
-        .missileSpeed       = 2,
-        .missileRate        = 2,
-        .interceptRadius    = 2
+        .missileSpeed       = 5,
+        .missileRate        = 8,
+        .interceptRadius    = 7
     },
     {
         .index              = 6,
         .numMissilesMax     = 10,
-        .missileSpeed       = 2,
-        .missileRate        = 2,
-        .interceptRadius    = 2
+        .missileSpeed       = 4,
+        .missileRate        = 8,
+        .interceptRadius    = 6
     },
     {
         .index              = 7,
         .numMissilesMax     = 10,
-        .missileSpeed       = 2,
-        .missileRate        = 2,
-        .interceptRadius    = 2
+        .missileSpeed       = 3,
+        .missileRate        = 7,
+        .interceptRadius    = 5
     },
     {
         .index              = 8,
         .numMissilesMax     = 10,
-        .missileSpeed       = 2,
-        .missileRate        = 2,
-        .interceptRadius    = 2
+        .missileSpeed       = 3,
+        .missileRate        = 6,
+        .interceptRadius    = 4
     },
     {
         .index              = 9,
         .numMissilesMax     = 10,
         .missileSpeed       = 2,
-        .missileRate        = 2,
-        .interceptRadius    = 2
+        .missileRate        = 5,
+        .interceptRadius    = 4
     },
     {
         .index              = 10,
         .numMissilesMax     = 10,
-        .missileSpeed       = 2,
-        .missileRate        = 2,
-        .interceptRadius    = 2
+        .missileSpeed       = 1,
+        .missileRate        = 4,
+        .interceptRadius    = 4
     }
 };
 

@@ -64,7 +64,7 @@ SDFileSystem    sd(p5, p6, p7, p8, "sd"); // mosi, miso, sck, cs
 
 
 uint32_t        playerScore = 0;
-int32_t        playerLives = 1;
+int32_t         playerLives = 1;
 
 Level           currentLevel = levels[0];
 
@@ -80,15 +80,22 @@ uint32_t        difficulty = 0;
  * To do:
  *
  * 1. The initial missile intercept radius should be 10 pixels.
- * 2. The city explosion should be different than the missile.
- * 3. Level should be in top left corner.
- * 4. Score should be in top right corner.
- * 5. Lives can be in lower left corner. 
+ * 2. Create game over menu.
+ * 3. Create some means to get back the top menu.
+ *      - preferably not an infinite loop. So many infinite loops.
+ * 4. When missiles move really fast they will jump over my ship, when they should destroy it.
+ * 5.
  *
  * Finished:
  *
  * 1. Implement intro screen
  * 2. Implement menu system
+ * 3. The city explosion should be different than the missile.
+ * 4. Level should be in top left corner.
+ * 5. Score should be in top right corner.
+ * 6. Lives can be in lower left corner. 
+ * 7. Change speed of missiles and generation rate.
+ * 8.
  *
  *
  */
@@ -123,9 +130,9 @@ int main()
      */
     
     
-    showIntroScreen(3);
+    //showIntroScreen(3);
     
-    difficulty = ShowMainMenu(left_pb, right_pb, aux_pb, fire_pb);
+    //difficulty = ShowMainMenu(left_pb, right_pb, aux_pb, fire_pb);
     
     player_init();
     city_landscape_init(numCities(3, false));
@@ -143,6 +150,11 @@ int main()
     while(1)
     {
         
+        // Update the missile speed & interval.
+        set_missile_speed(currentLevel.missileSpeed);
+        set_missile_interval(currentLevel.missileRate);
+        
+        
         missile_generator();
         
         player_draw(HSPLAYER_COLOR);
@@ -158,7 +170,7 @@ int main()
         PrintLevelToScreen(&currentLevel);
         
         
-        numMissilesThisLevel = getMissilesThisLevel();
+        numMissilesThisLevel = GetInterceptedMissileCount();
         
         
         #ifdef HSDEBUG
@@ -244,11 +256,11 @@ int main()
             pc.printf("Checking for collisions.\n\r");
         #endif
         
-        UpdatePlayerStatus();
+        UpdatePlayerStatus(&currentLevel);
         
-        UpdateCityStatus();
+        UpdateCityStatus(&currentLevel);
         
-        UpdateMissileStatus();
+        UpdateMissileStatus(&currentLevel);
         
         
         // 5. Redraw city landscape
@@ -260,7 +272,6 @@ int main()
         if(CheckGameOver()) {
             
             break;
-        
         }
         
         
@@ -281,9 +292,9 @@ int main()
                     pc.printf("Going to next level.\n\r");
                 #endif
                 
-                numMissilesThisLevel = 0;
-                
                 NextLevel(&currentLevel);
+                
+                ResetInterceptedMissileCount();
             }
         }
         

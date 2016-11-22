@@ -54,11 +54,16 @@ void AnimateExplosionAtLocation(uint32_t x, uint32_t y, bool isCity) {
         
         // City destruction animation.
         // Do something a bit more dramatic!
-        
+        BasicAnimateExplosionAtLocation(x+1, y+1, 5, BLUE, 0.01);
+        BasicAnimateExplosionAtLocation(x-2, y-3, 3, RED, 0.01);
+        BasicAnimateExplosionAtLocation(x-2, y+3, 4, GREEN, 0.01);
+        BasicAnimateExplosionAtLocation(x+2, y+3, 4, LGREY, 0.01);
         
         
     } else {
         
         BasicAnimateExplosionAtLocation(x, y, 5, RED, 0.01);
+        
+        // Can draw some rays going out from (x, y). Then cover them up.
     }
 }

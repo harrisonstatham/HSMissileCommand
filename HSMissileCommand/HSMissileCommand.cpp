@@ -128,7 +128,35 @@ bool didMissileHitPlayer(MISSILE *missile, PLAYER *player) {
 }
 
 
-
+/**
+ * didMissileHitPlayer
+ *
+ * @brief   Check to see if a missile has hit the player.
+ * @return  True if the missile has hit the player. False otherwise.
+ */
+bool didMissileHitMissile(MISSILE *badmissile, PLAYER_MISSILE *goodmissile, float radius) {
+    
+    // If the two missiles are already exploded then just return false.
+    if(badmissile->status == MISSILE_EXPLODED || goodmissile->status == PMISSILE_EXPLODED) {
+        return false;
+    }
+    
+    uint32_t gm_x = goodmissile->x;
+    uint32_t gm_y = goodmissile->y;
+    
+    uint32_t bm_x = badmissile->x;
+    uint32_t bm_y = badmissile->y;
+    
+    // Do a simple distance calculation.
+    // Calculate the distance from the two missiles.
+    float distance = sqrt( pow((gm_x - bm_x), 2) + pow((gm_y - bm_y), 2) );
+    
+    if(distance <= radius) {
+        return true;
+    }
+    
+    return false;
+}
 
 
 /**
@@ -137,7 +165,7 @@ bool didMissileHitPlayer(MISSILE *missile, PLAYER *player) {
  * @brief   Check to see if missiles have hit the city. If so update the cities.
  */
 
-void UpdateCityStatus(void) {
+void UpdateCityStatus(Level *l) {
     
     DLinkedList *missilesIn = get_missile_list();
     LLNode *head            = missilesIn->head;
@@ -200,6 +228,27 @@ void UpdateCityStatus(void) {
 }
 
 
+uint32_t numMissilesInterceptedThisLevel = 0;
+
+/**
+ * ResetInterceptedMissilesThisLevel
+ *
+ */
+
+void ResetInterceptedMissileCount() {
+    
+    numMissilesInterceptedThisLevel = 0;
+}
+
+/**
+ * GetInterceptedMissilesThisLevel
+ */
+
+uint32_t GetInterceptedMissileCount() {
+    
+    return numMissilesInterceptedThisLevel;
+}
+
 
 
 /**
@@ -208,7 +257,7 @@ void UpdateCityStatus(void) {
  * @brief   Walk both missile linked lists and check for collisions.
  */
 
-void UpdateMissileStatus() {
+void UpdateMissileStatus(Level *l) {
     
     PLAYER person               = player_get_info();
     DLinkedList *missilesIn     = get_missile_list();
@@ -246,15 +295,33 @@ void UpdateMissileStatus() {
             mb = (MISSILE *) headbad->data;
             
             
+            if(didMissileHitMissile(mb, mp, l->interceptRadius)) {
+                
+                playerScore++;
+                
+                mp->status = PMISSILE_EXPLODED;
+                mb->status = MISSILE_EXPLODED;
+                
+                // We have a hit!
+                AnimateExplosionAtLocation(mb->x, mb->y, false);
+                
+                // break out of the current loop since we dont
+                // want to check the current missile against any others since
+                // it has been destroyed (or destoried...)
+                break;
+
+            }
             
+            /*
             // Grab the coorindates of the incoming/outgoing missiles.
             bad_x = mb->x;
             bad_y = mb->y;
             
-            bool xHit = ((bad_x <= good_x + MISSILE_TO_MISSILE_MARGIN) &&
-                         (bad_x >= good_x - MISSILE_TO_MISSILE_MARGIN));
+            bool xHit = ((bad_x <= good_x + l->interceptRadius) &&
+                         (bad_x >= good_x - l->interceptRadius));
             
             bool yHit = ((bad_y <= good_y ) && (bad_y >= good_y ));
+            
             
             if(xHit && yHit) {
                 
@@ -271,6 +338,8 @@ void UpdateMissileStatus() {
                 // it has been destroyed (or destoried...)
                 break;
             }
+             
+             */
             
             headbad = headbad->next;
         }
@@ -290,7 +359,7 @@ void UpdateMissileStatus() {
  * @brief   Walk the missile linked list and find out if a missile has hit
  *          the players ship!
  */
-void UpdatePlayerStatus(void) {
+void UpdatePlayerStatus(Level *l) {
     
     PLAYER person               = player_get_info();
     DLinkedList *missilesIn     = get_missile_list();
@@ -321,18 +390,18 @@ void UpdatePlayerStatus(void) {
                 // Its game over for the player.
                 player_destroy();
                 
-#ifdef HSDEBUG
-                pc.printf("Destroyed\n\r");
-#endif
+                #ifdef HSDEBUG
+                    pc.printf("Destroyed\n\r");
+                #endif
                 
                 // Break out of the loop because we are done!
                 break;
                 
             } else {
                 
-#ifdef HSDEBUG
-                pc.printf("New Ship!\n\r");
-#endif
+                #ifdef HSDEBUG
+                    pc.printf("New Ship!\n\r");
+                #endif
                 
                 playerLives--;
                 

@@ -50,7 +50,7 @@ extern Serial pc;
  *
  */
 
-#define HSDEBUG 1
+#define HSDEBUG 0
 
 #define HSPLAYER_COLOR    255
 
