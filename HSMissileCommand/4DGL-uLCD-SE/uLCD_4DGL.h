@@ -22,6 +22,7 @@
 
 #include "mbed.h"
 
+
 // Debug Verbose off - SGE commands echoed to USB serial for debugmode=1
 #ifndef DEBUGMODE
 #define DEBUGMODE 0
@@ -336,7 +337,6 @@ protected :
 };
 
 typedef unsigned char BYTE;
-
 
 
 

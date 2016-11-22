@@ -17,6 +17,11 @@
 #include "missile_public.h"
 #include "player_public.h"
 
+#include "HSMissileCommand.hpp"
+#include "Level.hpp"
+
+#include "PrintToLCD.hpp"
+
 
 /***********************************************************************
  * Defines & Macros
@@ -135,80 +140,7 @@ void AnimateExplosionAtLocation(uint32_t x, uint32_t y, bool isCity);
 bool CheckGameOver();
 
 
-/**
- * PrintScoreToScreen
- *
- * @brief   Print the current number of intercepted missiles to the screen.
- */ 
-void PrintScoreToScreen();
 
-
-/**
- * PrintLivesToScreen
- *
- * @brief   Print the current number of player lives to the screen.
- */ 
-void PrintLivesToScreen();
-
-
-
-/**
- * @struct  Level
- * @brief   A struct describing the current level.
- */
-
-typedef struct Level {
-    
-    uint32_t index;
-    uint32_t numMissilesMax;
-    
-} Level;
-
-
-// Define some constants in memory for each level.
-// Limit to 10 levels say.
-
-const Level levels[10] = {
-    
-    {.index = 1, .numMissilesMax = 2},
-    {.index = 2, .numMissilesMax = 5},
-    {.index = 3, .numMissilesMax = 5},
-    {.index = 4, .numMissilesMax = 100},
-    {.index = 5, .numMissilesMax = 125},
-    {.index = 6, .numMissilesMax = 150},
-    {.index = 7, .numMissilesMax = 150},
-    {.index = 8, .numMissilesMax = 175},
-    {.index = 9, .numMissilesMax = 200},
-    {.index = 10, .numMissilesMax = 300}
-};
-
-
-/**
- * NextLevel
- *
- * @param currentLevel  A pointer (Level *) to the current level.
- */
-
-void NextLevel(Level *currentLevel);
-
-
-/**
- * CanGoToNextLevel
- *
- * @return              A boolean determining if the next level can be loaded.
- */
-
-bool CanGoToNextLevel();
-
-
-
-/**
- * PrintLevelToScreen
- *
- * @brief   Print the current level to the screen.
- */
-
-void PrintLevelToScreen(Level *currentLevel);
 
 
 /**
@@ -255,9 +187,11 @@ SDFileSystem    sd(p5, p6, p7, p8, "sd"); // mosi, miso, sck, cs
 
 
 uint32_t        playerScore = 0;
-uint32_t        playerLives = 1;
+int32_t        playerLives = 1;
 
 Level           currentLevel = levels[0];
+
+
 
 
 
@@ -294,7 +228,7 @@ int main()
      * 3. Missiles
      * 4. ...
      */
-     
+    
     player_init();
     city_landscape_init(numCities(3, false));
     missile_init();
@@ -319,9 +253,9 @@ int main()
         // Print score after the missile generator so we can overwrite
         // any of the pixels that might have been set by the missile
         // generator.
-        PrintScoreToScreen();
+        PrintScoreToScreen(playerScore);
         
-        PrintLivesToScreen();
+        PrintLivesToScreen(playerLives);
         
         PrintLevelToScreen(&currentLevel);
         
@@ -435,9 +369,6 @@ int main()
         // 7. Check for next level.
         if(numMissilesThisLevel >= currentLevel.numMissilesMax) {
             
-            // Get the missile list and find out if all of them have been destroyed.
-            // If that is true, then we can advance to the next level.
-            
             #ifdef HSDEBUG
                 pc.printf("Satisfied condition for next level.\n\r");
             #endif
@@ -451,6 +382,8 @@ int main()
                 #ifdef HSDEBUG
                     pc.printf("Going to next level.\n\r");
                 #endif
+                
+                numMissilesThisLevel = 0;
                 
                 NextLevel(&currentLevel);
             }
@@ -774,14 +707,16 @@ void UpdatePlayerStatus(void) {
             
             // Show animation of missile exploding.
             
+            AnimateExplosionAtLocation(mis->x, mis->y, false);
+            
             // Show animation of ship exploding.   
             
             
             // Check to see if we have more lives available.
-            if(playerLives < 1) {
+            if(playerLives < 0) {
                 
                 // Its game over for the player.
-                person.status = DESTROYED;
+                player_destroy();
                 
                 #ifdef HSDEBUG
                     pc.printf("Destroyed\n\r");
@@ -795,8 +730,6 @@ void UpdatePlayerStatus(void) {
                 #ifdef HSDEBUG
                     pc.printf("New Ship!\n\r");    
                 #endif
-                
-                
                 
                 playerLives--;
             
@@ -875,6 +808,8 @@ bool CheckGameOver() {
     // left, and once we are out of lives then we fail.
     if(player.status != ALIVE) return true;
     
+    if(playerLives < 0) return true;
+    
     for(counter = 0; counter < currentNumCities; counter++) {
         
         city = city_get_info(counter);
@@ -888,146 +823,12 @@ bool CheckGameOver() {
 }
 
 
-/**
- * PrintScoreToScreen
- *
- * @brief   Print the current number of intercepted missiles to the screen.
- */
- 
-void PrintScoreToScreen() {
-    
-    // Draw black rectangle in top left corner.
-    //uLCD.filled_rectangle(0, 0, 40, 20, BLACK);
-    
-    char text[12];
-    sprintf(text, "S: %d", playerScore);
-    
-    uLCD.text_string(text, '\x00', '\x00', FONT_7X8, GREEN);
-}
-
-
-/**
- * PrintLivesToScreen
- *
- * @brief   Print the current number of player lives to the screen.
- */ 
-void PrintLivesToScreen() {
-    
-    char text[12];
-    sprintf(text, "   %d", playerLives);
-    
-    // Attempt to draw a heart from basic shapes.
-    
-    uLCD.text_string(text, '\x00', '\x02', FONT_7X8, GREEN);
-}
-
-
-/**
- * PrintLevelToScreen
- *
- * @brief   Print the current level to the screen.
- */
-
-void PrintLevelToScreen(Level *level) {
-    
-    char text[12];
-    sprintf(text, "Lev: %d", level->index);
-    
-    uLCD.text_string(text, '\x00', '\x03', FONT_7X8, GREEN);
-}
 
 
 
 
 
 
-/**
- * NextLevel
- *
- * @param currentLevel  A pointer (Level *) to the current level.
- */
-
-void NextLevel(Level *currentLevel) {
-    
-    // Get the next level.
-    
-    if(currentLevel == NULL) {
-        
-        *currentLevel = levels[0];
-        
-    } else if(currentLevel->index == 10) {
-        
-        // do nothing since this is the last level.
-        
-    } else {
-        
-        *currentLevel = levels[currentLevel->index];
-    }
-    
-    // Clear all of the current missiles on the screen.
-    // IE destroy the missile list.
-    DLinkedList *missiles = get_missile_list();
-    
-    LLNode *head = missiles->head;
-    MISSILE *m   = NULL;
-    
-    while(head) {
-        
-        m = (MISSILE *) head->data;
-        m->status = MISSILE_EXPLODED;
-        head = head->next;
-    }
-    
-    
-    // Clear all of the user missiles on the screen.
-    // IE destroy the user missile list.
-    PLAYER player = player_get_info();
-    DLinkedList *pmissiles = player.playerMissiles;
-    head = pmissiles->head;
-    
-    PLAYER_MISSILE *mp = NULL;
-    
-    while(head) {
-        
-        mp = (PLAYER_MISSILE *) head->data;
-        mp->status = PMISSILE_EXPLODED;
-        head = head->next;
-    }
-    
-    
-    // Reset the missile generator.
-    setContinueToDrawMissiles(true);
-}
-
-
-
-/**
- * CanGoToNextLevel
- *
- * @return              A boolean determining if the next level can be loaded.
- */
-
-bool CanGoToNextLevel() {
-    
-    DLinkedList *missiles = get_missile_list();
-    
-    LLNode *head = missiles->head;
-    MISSILE *m   = NULL;
-    
-    while(head) {
-        
-        m = (MISSILE *) head->data;
-        
-        if(m->status == MISSILE_ACTIVE) {
-            
-            return false;
-        }
-        
-        head = head->next;
-    }
-    
-    return true;
-}
 
 
 

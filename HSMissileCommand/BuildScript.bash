@@ -7,6 +7,9 @@ make clean
 
 make
 
+outputResult = $?
+
+
 # Upload the new binary to the MBED.
 
 cp -f .build/MissileCommand.bin /Volumes/MBED/MissileCommand.bin
