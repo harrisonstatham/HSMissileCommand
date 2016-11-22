@@ -10,16 +10,17 @@ Missile Command on the MBED.
 
 ## Building
 
-1. Install the above dependencies.
-2. Download the zip file or `git clone` the source to your computer.
-3. Run `cd <HSMissileCommand-folder-you-just-downloaded-or-cloned>`
-4. Run `chmod u+x BuildScript.bash`
-5. Run `./BuildScript.bash`
+1. Read the `Notes` section first.
+2. Install the above dependencies.
+3. Download the zip file or `git clone` the source to your computer.
+4. Run `cd <HSMissileCommand-folder-you-just-downloaded-or-cloned>`
+5. Run `chmod u+x BuildScript.bash`
+6. Run `./BuildScript.bash`
 
 
 ## Notes
 
-1. I have applied a MIT copyright to all of this. No I dont care if you "steal" my code, or use it as a reference. However if you are a GT student you are bound by the honor code. I will not be responsible if you are caught cheating whilst using my code!! I provide this repo as a potential future reference to other students, NOT as a "hey look, I can copy, and paste this code, and call it mine".
+1. I have applied a MIT copyright to all of this. However if you are a GT student you are bound by the honor code. I will not be responsible if you are caught cheating whilst using my code!! I provide this repo as a, potential, future reference to other students, NOT as a "hey look, I can copy, and paste this code, and call it mine". If your'e caught cheating, don't drag me into your mess.
 
 2. If you are using another toolchain, the make file is almost worthless. You will need to write a new one or patch the current one.
 
