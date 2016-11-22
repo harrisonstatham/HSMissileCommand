@@ -5,15 +5,15 @@ These are the basic features that the game MUST have.
 
 50 points 
 
-__y__ 1. Aircraft Movement
-__y__ 2. Firing at missiles
-__y__ 3. Detecting missile intercept and animating explosion.
-__y__ 4. Detecting and animating city destruction.
-__y__ 5. Detecting game over.
-__y__ 6. Displaying score.
-__y__ 7. Advancing levels
-__y__ 8. Force level advance by pushing left and right buttons.
-* __y__ 9. Documentation.
+* __y__ Aircraft Movement
+* __y__ Firing at missiles
+* __y__ Detecting missile intercept and animating explosion.
+* __y__ Detecting and animating city destruction.
+* __y__ Detecting game over.
+* __y__ Displaying score.
+* __y__ Advancing levels
+* __y__ Force level advance by pushing left and right buttons.
+* __y__ Documentation.
 
 
 ## Extra Features
