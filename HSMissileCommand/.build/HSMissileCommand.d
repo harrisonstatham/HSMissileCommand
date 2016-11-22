@@ -24,8 +24,16 @@ HSMissileCommand.o: ../HSMissileCommand.cpp .././mbed_config.h \
  ../mbed/TimerEvent.h ../mbed/us_ticker_api.h ../mbed/Timeout.h \
  ../mbed/LocalFileSystem.h ../mbed/FileSystemLike.h ../mbed/DirHandle.h \
  ../mbed/InterruptIn.h ../mbed/gpio_irq_api.h ../mbed/wait_api.h \
- ../mbed/sleep_api.h ../mbed/rtc_time.h ../missile_public.h \
- ../doubly_linked_list.h ../city_landscape_public.h ../player_public.h
+ ../mbed/sleep_api.h ../mbed/rtc_time.h ../globals.h \
+ ../4DGL-uLCD-SE/uLCD_4DGL.h ../mbed/./mbed.h \
+ ../SDFileSystem/SDFileSystem.h \
+ ../SDFileSystem/FATFileSystem/FATFileSystem.h ../mbed/./FileSystemLike.h \
+ ../mbed/./FileHandle.h ../SDFileSystem/FATFileSystem/ChaN/ff.h \
+ ../SDFileSystem/FATFileSystem/ChaN/integer.h \
+ ../SDFileSystem/FATFileSystem/ChaN/ffconf.h ../missile_public.h \
+ ../doubly_linked_list.h ../city_landscape_public.h ../player_public.h \
+ ../Level.hpp ../Explosions.hpp ../PrintToLCD.hpp ../IntroScreen.hpp \
+ ../MainMenu.hpp
 
 .././mbed_config.h:
 
@@ -165,6 +173,26 @@ HSMissileCommand.o: ../HSMissileCommand.cpp .././mbed_config.h \
 
 ../mbed/rtc_time.h:
 
+../globals.h:
+
+../4DGL-uLCD-SE/uLCD_4DGL.h:
+
+../mbed/./mbed.h:
+
+../SDFileSystem/SDFileSystem.h:
+
+../SDFileSystem/FATFileSystem/FATFileSystem.h:
+
+../mbed/./FileSystemLike.h:
+
+../mbed/./FileHandle.h:
+
+../SDFileSystem/FATFileSystem/ChaN/ff.h:
+
+../SDFileSystem/FATFileSystem/ChaN/integer.h:
+
+../SDFileSystem/FATFileSystem/ChaN/ffconf.h:
+
 ../missile_public.h:
 
 ../doubly_linked_list.h:
@@ -172,3 +200,13 @@ HSMissileCommand.o: ../HSMissileCommand.cpp .././mbed_config.h \
 ../city_landscape_public.h:
 
 ../player_public.h:
+
+../Level.hpp:
+
+../Explosions.hpp:
+
+../PrintToLCD.hpp:
+
+../IntroScreen.hpp:
+
+../MainMenu.hpp:

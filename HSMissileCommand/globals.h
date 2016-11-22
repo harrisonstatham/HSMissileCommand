@@ -11,7 +11,7 @@
 // === [global object] ===
 extern uLCD_4DGL uLCD;
 extern SDFileSystem sd;
-
+extern Serial pc;
 
 // === [global settings] ===
 #define BACKGROUND_COLOR 0x000000 //black
@@ -39,5 +39,29 @@ extern SDFileSystem sd;
 #define ERROR_CITY_INDEX_GET_INFO         -12 // make sure your code give the valid index for city_get_info()
 #define ERROR_CITY_INDEX_DESTROY          -13 // make sure your code give the valid index for city_destory()
 // other anti-missile error code ...
+
+
+
+
+
+
+/***********************************************************************
+ * Defines & Macros
+ *
+ */
+
+#define HSDEBUG 1
+
+#define HSPLAYER_COLOR    255
+
+#define MISSILE_TO_MISSILE_MARGIN 3
+
+#define CITY_HIT_MARGIN 1
+#define CITY_UPPER_BOUND (SIZE_Y-(LANDSCAPE_HEIGHT+MAX_BUILDING_HEIGHT))
+
+
+
+
+
 
 #endif //GLOBAL_H

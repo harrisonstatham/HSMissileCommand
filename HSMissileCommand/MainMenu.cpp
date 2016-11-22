@@ -96,12 +96,6 @@ void ShowAltMenu(DigitalIn auxbtn, uint32_t whatMenu) {
 uint32_t ShowMainMenu(DigitalIn leftbtn, DigitalIn rightbtn, DigitalIn auxbtn, DigitalIn firebtn) {
     
     
-    // Draw all the main text here that DOESNT change across states.
-    
-    // Show MISSILE COMMAND at the top of the screen.
-    uLCD.text_string("MISSILE COMMAND", '\x02', '\x01', FONT_7X8, RED);
-    
-    
     uint32_t rightbtnPressed    = 0;
     uint32_t leftbtnPressed     = 0;
     uint32_t firebtnPressed     = 0;
@@ -215,6 +209,8 @@ uint32_t ShowMainMenu(DigitalIn leftbtn, DigitalIn rightbtn, DigitalIn auxbtn, D
             }
         }
         
+        // Show MISSILE COMMAND at the top of the screen.
+        uLCD.text_string("MISSILE COMMAND", '\x02', '\x01', FONT_7X8, RED);
         
         // Show directions for navigating the menu here.
         uLCD.text_string("Right = Up",      '\x02', '\x03', FONT_7X8, RED);
