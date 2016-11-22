@@ -24,7 +24,7 @@ These are extra features that you can implement for upto 50 extra points.
 
 __y__ 1. More complex explosion
 __y__ 2. Multiple lives
-__n__ 3. Change aircraft shape.
+__y__ 3. Change aircraft shape.
 __n__ 4. Add MIRVs
 __n__ 5. Add new hardware to do something interesting.
 __n__ 6. Enable diagonal anti-missile trajectories.
@@ -47,6 +47,12 @@ __n__ 4. Add an LED to visually demonstrate difficulty level.
 _____ 5. 
 
 
-+15 points.
+### Score
 
-This is a list of extra features that I have implemented to Missile Command.
++25 points (assuming linked list worked perfectly)
++50 points (for basic features)
++40 points. (for added features)
+----------------------------------
+115
+
+
