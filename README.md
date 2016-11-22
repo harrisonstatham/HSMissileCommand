@@ -19,11 +19,11 @@ Missile Command on the MBED.
 
 
 ## Notes
-
 1. I have applied a MIT copyright to all of this. However, if you are a GT student you are bound by the honor code. 
-    a. I will not be responsible if you are caught cheating whilst using my code!! 
-    b. I provide this repo as a, potential, future reference to other students, NOT as a "hey look, I can copy, and paste this code, and call it mine". 
-    c. If you're caught cheating, don't drag me into your mess.
+    
+    * a. I will not be responsible if you are caught cheating whilst using my code!! 
+    * b. I provide this repo as a, potential, future reference to other students, NOT as a "hey look, I can copy, and paste this code, and call it mine". 
+    * c. If you're caught cheating, don't drag me into your mess.
 
 2. If you are using another toolchain, the make file is almost worthless. You will need to write a new one or patch the current one.
 
