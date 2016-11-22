@@ -1,13 +1,21 @@
 # HSMissileCommand
 Missile Command on the MBED.
 
+## Dependencies
+
+1. GCC-ARM toolchain (https://launchpad.net/gcc-arm-embedded)
+2. Make
+3. ... 
+
 
 ## Building
 
-1. Install the GCC-ARM toolchain. https://launchpad.net/gcc-arm-embedded
+1. Install the above dependencies.
 2. Download the zip file or `git clone` the source to your computer.
-3. Run `chmod u+x BuildScript.bash`
-3. Run `./BuildScript.bash`
+3. Run `cd <HSMissileCommand-folder-you-just-downloaded>`
+4. Run `chmod u+x BuildScript.bash`
+5. Run `./BuildScript.bash`
+
 
 ## Notes
 
