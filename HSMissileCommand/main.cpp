@@ -35,7 +35,7 @@
  * @brief       Play a sound using the buzzer.
  * @param wav   A string (char *) to the file to play.
  */
-void playSound(char* wav);
+//void playSound(char* wav);
 
 
 /***********************************************************************
@@ -57,23 +57,30 @@ DigitalOut      led1(p13);
 DigitalOut      led2(p14);
 DigitalOut      led3(p15);
 
+DigitalOut      missileSound(p19);
+DigitalOut      otherSound(p20);
+
+
+DigitalOut      newGameSignal(p25);
+
+DigitalOut      gameOverSignal(p26);
 
 
 uLCD_4DGL       uLCD(p9,p10,p11); // serial tx, serial rx, reset pin;
 
 // Speaker
-AnalogOut       DACout(p18);
-PwmOut          speaker(p25);
-wave_player     waver(&DACout);
+//AnalogOut       DACout(p18);
+//PwmOut          speaker(p25);
+//wave_player     waver(&DACout);
 
 // SD Card
-SDFileSystem    sd(p5, p6, p7, p8, "sd"); // mosi, miso, sck, cs
+//SDFileSystem    sd(p5, p6, p7, p8, "sd"); // mosi, miso, sck, cs
 
 
-uint32_t        playerScore = 0;
-int32_t         playerLives = 1;
+uint32_t        playerScore;
+int32_t         playerLives;
 
-Level           currentLevel = levels[0];
+Level           currentLevel;
 
 
 uint32_t        difficulty = 0;
@@ -129,7 +136,7 @@ int main()
     led1.write(0);
     led2.write(0);
     led3.write(0);
-    
+    newGameSignal.write(1);
     
     /*******************************************
      * Initialize
@@ -149,8 +156,21 @@ int main()
     
     uint32_t numMissilesThisLevel = 0;
     
+    bool updatedLevelOnce = false;
     
     while(1) {
+        
+        newGameSignal.write(1);
+        gameOverSignal.write(0);
+        
+        
+        // Update score, lives, and level to start over.
+        //
+        
+        playerScore         = 0;
+        playerLives         = 1;
+        currentLevel        = levels[0];
+        updatedLevelOnce    = false;
         
         
         showIntroScreen(3);
@@ -169,8 +189,8 @@ int main()
                 break;
         }
         
-    
-    
+        
+
         player_init();
         city_landscape_init(numCities(4, false));
         missile_init();
@@ -180,6 +200,38 @@ int main()
         // Main game loop
         while(1)
         {
+            
+            if(!updatedLevelOnce) {
+                
+            
+                switch(difficulty) {
+                        
+                    // Easy mode
+                    case 0:
+                        
+                        currentLevel.missileRate++;
+                        currentLevel.missileSpeed++;
+                        
+                        break;
+                    
+                    // Hard mode
+                    case 2:
+                        
+                        currentLevel.missileRate--;
+                        currentLevel.missileSpeed--;
+                        
+                        break;
+                }
+                
+                // Set the new game signal low.
+                
+                
+                updatedLevelOnce = true;
+            }
+            
+            
+            newGameSignal.write(0);
+            
             
             // Update the missile speed & interval.
             set_missile_speed(currentLevel.missileSpeed);
@@ -204,12 +256,6 @@ int main()
             numMissilesThisLevel = GetInterceptedMissileCount();
             
             
-#ifdef HSDEBUG
-            
-            
-            
-#endif
-            
             // 1. Update missiles
             // 2. Read input
             
@@ -223,19 +269,17 @@ int main()
             if(rightbtnPressed && leftbtnPressed) {
                 // do level advance here.
                 
-#ifdef HSDEBUG
+                #ifdef HSDEBUG
                 
-                pc.printf("Going to next level.\n\r");
-                
-#endif
+                    pc.printf("Going to next level.\n\r");
+                #endif
                 
                 NextLevel(&currentLevel);
                 
-#ifdef HSDEBUG
+                #ifdef HSDEBUG
                 
-                pc.printf("On next level.\n\r");
-                
-#endif
+                    pc.printf("On next level.\n\r");
+                #endif
                 
                 // Wait for a little to slow down the code.
                 // As it is a human cant press both buttons, and remove their fingers without
@@ -255,27 +299,27 @@ int main()
                 
                 player_moveRight();
                 
-#ifdef HSDEBUG
-                pc.printf("Moving right.\n\r");
-#endif
+                #ifdef HSDEBUG
+                    pc.printf("Moving right.\n\r");
+                #endif
             }
             
             if(leftbtnPressed) {
                 
                 player_moveLeft();
                 
-#ifdef HSDEBUG
-                pc.printf("Moving left.\n\r");
-#endif
+                #ifdef HSDEBUG
+                    pc.printf("Moving left.\n\r");
+                #endif
             }
             
             if(firebtnPressed) {
                 
                 player_fire();
                 
-#ifdef HSDEBUG
-                pc.printf("Firing.\n\r");
-#endif
+                #ifdef HSDEBUG
+                    pc.printf("Firing.\n\r");
+                #endif
             }
             
             player_missile_draw();
@@ -283,9 +327,9 @@ int main()
             
             // 4. Check for collisions
             
-#ifdef HSDEBUG
-            pc.printf("Checking for collisions.\n\r");
-#endif
+            #ifdef HSDEBUG
+                pc.printf("Checking for collisions.\n\r");
+            #endif
             
             UpdatePlayerStatus(&currentLevel);
             
@@ -309,9 +353,9 @@ int main()
             // 7. Check for next level.
             if(numMissilesThisLevel >= currentLevel.numMissilesMax) {
                 
-#ifdef HSDEBUG
-                pc.printf("Satisfied condition for next level.\n\r");
-#endif
+                #ifdef HSDEBUG
+                    pc.printf("Satisfied condition for next level.\n\r");
+                #endif
                 
                 // Stop drawing new missiles to the screen.
                 setContinueToDrawMissiles(false);
@@ -319,21 +363,26 @@ int main()
                 
                 if(CanGoToNextLevel()) {
                     
-#ifdef HSDEBUG
-                    pc.printf("Going to next level.\n\r");
-#endif
+                    #ifdef HSDEBUG
+                        pc.printf("Going to next level.\n\r");
+                    #endif
                     
                     NextLevel(&currentLevel);
                     
                     ResetInterceptedMissileCount();
+                    
+                    updatedLevelOnce = false;
                 }
             }
             
+            
+            missileSound.write(0);
+            otherSound.write(0);
         }
         
-        
-        
-        
+        gameOverSignal.write(1);
+        missileSound.write(0);
+        otherSound.write(0);
         
         showGameOverScreen(5);
     }
@@ -361,7 +410,7 @@ int main()
 
 
 
-
+/*
 
 // Plays a wavfile
 void playSound(char* wav)
@@ -388,7 +437,7 @@ void playSound(char* wav)
     return;
 }
 
-
+*/
 
 
 

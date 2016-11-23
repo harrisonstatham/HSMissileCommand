@@ -32,6 +32,9 @@
 extern uint32_t playerScore;
 extern int32_t playerLives;
 
+extern DigitalOut missileSound;
+extern DigitalOut otherSound;
+
 
 typedef struct _HSMissileCommand {
 

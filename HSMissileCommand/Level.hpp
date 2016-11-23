@@ -43,28 +43,28 @@ const Level levels[10] = {
     {
         .index              = 1,
         .numMissilesMax     = 10,
-        .missileSpeed       = 6,
+        .missileSpeed       = 7,
         .missileRate        = 10,
         .interceptRadius    = 10
     },
     {
         .index              = 2,
         .numMissilesMax     = 10,
-        .missileSpeed       = 6,
+        .missileSpeed       = 7,
         .missileRate        = 10,
         .interceptRadius    = 10
     },
     {
         .index              = 3,
         .numMissilesMax     = 10,
-        .missileSpeed       = 5,
+        .missileSpeed       = 6,
         .missileRate        = 9,
         .interceptRadius    = 9
     },
     {
         .index              = 4,
         .numMissilesMax     = 10,
-        .missileSpeed       = 5,
+        .missileSpeed       = 6,
         .missileRate        = 9,
         .interceptRadius    = 8
     },
@@ -78,36 +78,36 @@ const Level levels[10] = {
     {
         .index              = 6,
         .numMissilesMax     = 10,
-        .missileSpeed       = 4,
+        .missileSpeed       = 5,
         .missileRate        = 8,
         .interceptRadius    = 6
     },
     {
         .index              = 7,
         .numMissilesMax     = 10,
-        .missileSpeed       = 3,
+        .missileSpeed       = 4,
         .missileRate        = 7,
         .interceptRadius    = 5
     },
     {
         .index              = 8,
         .numMissilesMax     = 10,
-        .missileSpeed       = 3,
+        .missileSpeed       = 4,
         .missileRate        = 6,
         .interceptRadius    = 4
     },
     {
         .index              = 9,
         .numMissilesMax     = 10,
-        .missileSpeed       = 2,
+        .missileSpeed       = 3,
         .missileRate        = 5,
         .interceptRadius    = 4
     },
     {
         .index              = 10,
         .numMissilesMax     = 10,
-        .missileSpeed       = 1,
-        .missileRate        = 4,
+        .missileSpeed       = 2,
+        .missileRate        = 2,
         .interceptRadius    = 4
     }
 };

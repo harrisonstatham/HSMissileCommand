@@ -206,6 +206,9 @@ void UpdateCityStatus(Level *l) {
                 // Update missile to remove it from the screen.
                 min->status = MISSILE_EXPLODED;
                 
+                
+                otherSound.write(1);
+                
             } else {
                 
                 // The missile didnt hit a city but did it hit the landscape?
@@ -306,6 +309,8 @@ void UpdateMissileStatus(Level *l) {
                 mp->status = PMISSILE_EXPLODED;
                 mb->status = MISSILE_EXPLODED;
                 
+                missileSound.write(1);
+                
                 // We have a hit!
                 AnimateExplosionAtLocation(mb->x, mb->y, false);
                 
@@ -386,6 +391,8 @@ void UpdatePlayerStatus(Level *l) {
             AnimateExplosionAtLocation(mis->x, mis->y, false);
             
             // Show animation of ship exploding.
+            
+            otherSound.write(1);
             
             
             // Check to see if we have more lives available.
