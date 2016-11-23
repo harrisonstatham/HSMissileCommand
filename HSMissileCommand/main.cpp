@@ -52,6 +52,13 @@ DigitalIn       right_pb(p22);
 DigitalIn       fire_pb(p23);
 DigitalIn       aux_pb(p24);
 
+
+DigitalOut      led1(p13);
+DigitalOut      led2(p14);
+DigitalOut      led3(p15);
+
+
+
 uLCD_4DGL       uLCD(p9,p10,p11); // serial tx, serial rx, reset pin;
 
 // Speaker
@@ -119,6 +126,10 @@ int main()
     fire_pb.mode(PullUp);
     aux_pb.mode(PullUp);
     
+    led1.write(0);
+    led2.write(0);
+    led3.write(0);
+    
     
     /*******************************************
      * Initialize
@@ -142,10 +153,24 @@ int main()
     while(1) {
         
         
-        //showIntroScreen(3);
+        showIntroScreen(3);
         
-        //difficulty = ShowMainMenu(left_pb, right_pb, aux_pb, fire_pb);
+        difficulty = ShowMainMenu(left_pb, right_pb, aux_pb, fire_pb);
         
+        switch(difficulty) {
+                
+            case 0: led1.write(1);
+                break;
+                
+            case 1: led2.write(1);
+                break;
+                
+            case 2: led3.write(1);
+                break;
+        }
+        
+    
+    
         player_init();
         city_landscape_init(numCities(4, false));
         missile_init();

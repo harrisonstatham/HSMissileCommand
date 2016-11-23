@@ -40,11 +40,11 @@ These are extra features that you can implement for upto 50 extra points.
 
 ## Other Extra Features
 
-__y__ 1. Create intro screen to the game.
-__y__ 2. Create game over screen.
-__y__ 3. Create an enclosure for the game.
-__n__ 4. Add an LED to visually demonstrate difficulty level.
-_____ 5. 
+* __y__ 1. Create intro screen to the game.
+* __y__ 2. Create game over screen.
+* __y__ 3. Create an enclosure for the game.
+* __n__ 4. Add an LED to visually demonstrate difficulty level.
+* _____ 5.  
 
 
 ### Score
