@@ -26,7 +26,7 @@ These are extra features that you can implement for upto 50 extra points.
 * __y__ Multiple lives
 * __y__ Change aircraft shape.
 * __n__ Add MIRVs
-* __n__ Add new hardware to do something interesting.
+* __y__ Add new hardware to do something interesting.
 * __n__ Enable diagonal anti-missile trajectories.
 * __n__ Smart/steerable anti-missile
 * __y__ Include a game menu for configuring the game.
@@ -35,7 +35,7 @@ These are extra features that you can implement for upto 50 extra points.
 * __y__ Use pushbuttons to create a new feature.
 
 
-+20 points
++30 points
 
 
 ## Other Extra Features
@@ -46,13 +46,14 @@ These are extra features that you can implement for upto 50 extra points.
 * __n__ 4. Add an LED to visually demonstrate difficulty level.
 * _____ 5.  
 
++15 points
 
 ### Score
 
 +25 points (assuming linked list worked perfectly)
 +50 points (for basic features)
-+40 points. (for added features)
++45 points. (for added features)
 ----------------------------------
-115
+120
 
 

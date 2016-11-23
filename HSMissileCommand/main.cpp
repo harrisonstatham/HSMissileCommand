@@ -95,12 +95,7 @@ uint32_t        difficulty = 0;
  *
  * To do:
  *
- * 1. The initial missile intercept radius should be 10 pixels.
- * 2. Create game over menu.
- * 3. Create some means to get back the top menu.
- *      - preferably not an infinite loop. So many infinite loops.
- * 4. When missiles move really fast they will jump over my ship, when they should destroy it.
- * 5.
+ * 1. When missiles move really fast they will jump over my ship, when they should destroy it.
  *
  * Finished:
  *
@@ -111,7 +106,10 @@ uint32_t        difficulty = 0;
  * 5. Score should be in top right corner.
  * 6. Lives can be in lower left corner. 
  * 7. Change speed of missiles and generation rate.
- * 8.
+ * 8. The initial missile intercept radius should be 10 pixels.
+ * 9. Create game over menu.
+ * 10. Create some means to get back the top menu.
+ * 11.
  *
  *
  */
@@ -133,10 +131,14 @@ int main()
     fire_pb.mode(PullUp);
     aux_pb.mode(PullUp);
     
+    
+    // Write out to the LEDs.
     led1.write(0);
     led2.write(0);
     led3.write(0);
     newGameSignal.write(1);
+    
+    
     
     /*******************************************
      * Initialize
@@ -156,8 +158,20 @@ int main()
     
     uint32_t numMissilesThisLevel = 0;
     
+    
+    // We only want to update the level code once per level.
+    // Otherwise we will go below the threshold values for missile_speed and
+    // missile interval - not good!!
     bool updatedLevelOnce = false;
     
+    
+    // Simple accelerometer test.
+    
+    double x;
+    double y;
+    double z;
+    
+
     while(1) {
         
         newGameSignal.write(1);
@@ -172,11 +186,15 @@ int main()
         currentLevel        = levels[0];
         updatedLevelOnce    = false;
         
-        
+        // Show the intro screen to the user. Delay for 3 seconds after.
         showIntroScreen(3);
+        
+        
+        // Show the main menu and get the difficulty that the user selected (or didnt select)
         
         difficulty = ShowMainMenu(left_pb, right_pb, aux_pb, fire_pb);
         
+        // Turn on the different LEDs to indicate what difficulty level we are on.
         switch(difficulty) {
                 
             case 0: led1.write(1);
@@ -295,7 +313,13 @@ int main()
                 continue;
             }
             
-            if(rightbtnPressed) {
+            
+            
+            // Read from the accelerometer too.
+            accel.readXYZGravity(&x,&y,&z);
+            
+            
+            if(rightbtnPressed || x <= -0.25) {
                 
                 player_moveRight();
                 
@@ -304,7 +328,7 @@ int main()
                 #endif
             }
             
-            if(leftbtnPressed) {
+            if(leftbtnPressed || x >= 0.25) {
                 
                 player_moveLeft();
                 

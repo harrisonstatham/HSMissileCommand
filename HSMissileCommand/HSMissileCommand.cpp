@@ -38,9 +38,9 @@ uint32_t numCities(uint32_t setNumCities, bool shouldRead) {
         
         actualNumCities = (setNumCities >= MAX_NUM_CITY) ? MAX_NUM_CITY : 1;
         
-#ifdef HSDEBUG
+    #ifdef HSDEBUG
         pc.printf("numCities(): Tried to create: %d cities. Min = 1, Max = %d\n\r", setNumCities, MAX_NUM_CITY);
-#endif
+    #endif
         
         
     } else {
