@@ -25,7 +25,7 @@ Missile Command on the MBED.
     * I provide this repo as a, potential, future reference to other students, NOT as a "hey look, I can copy, and paste this code, and call it mine". 
     * If you're caught cheating, don't drag me into your mess.
 
-2. If you are using another toolchain, the make file is almost worthless. You will need to write a new one or patch the current one.
+2. If you are using another toolchain, the make file is almost worthless. You will need to write a new one or patch the current one. You can "cheat", and let the MBED compiler write the makefile for you. Go to the MBED online compiler, go to the export menu, choose your compiler that you want to export for, and make sure to check "Include all files". You should find a makefile within the downloaded directory. You might have to modify it a little to point to the correct locations on your system.
 
 3. `BuildScript.bash` looks for the gcc-arm toolchain within the `usr/local/Cellar` folder. A relic on my system of the `brew` package manager. You can modify the `bash` script to point to wherever you have your toolchain installed.
 
